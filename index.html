@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Baixar App | Linda Moça Exclusive</title>
+  <meta name="description" content="Instale o app oficial da Linda Moça Exclusive. Redirecionamento automático para App Store ou Google Play." />
+  <style>
+    :root{--t:#111;--m:rgba(17,17,17,.72);--b:rgba(17,17,17,.14);--s:0 18px 50px rgba(17,17,17,.12)}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:#fff;color:var(--t)}
+    .wrap{max-width:980px;margin:0 auto;padding:40px 16px}
+    .card{border:1px solid var(--b);border-radius:22px;box-shadow:var(--s);overflow:hidden;background:linear-gradient(180deg,rgba(17,17,17,.03),rgba(17,17,17,.01));
+      display:grid;grid-template-columns:1.2fr .8fr}
+    .top{padding:22px}
+    .badge{display:inline-flex;padding:10px 14px;border:1px solid var(--b);border-radius:999px;font-size:13px;color:var(--m);background:rgba(255,255,255,.7)}
+    h1{margin:14px 0 8px;font-size:32px;line-height:1.08;letter-spacing:-.02em}
+    p{margin:0 0 16px;color:var(--m);line-height:1.5}
+    .btns{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+    a.btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;border-radius:18px;border:1px solid var(--b);background:#fff;text-decoration:none;color:#111;font-weight:800;
+      box-shadow:0 10px 30px rgba(17,17,17,.08);transition:.18s}
+    a.btn:hover{transform:translateY(-2px);box-shadow:0 16px 46px rgba(17,17,17,.14);border-color:rgba(17,17,17,.25)}
+    .primary{grid-column:1/-1;background:linear-gradient(180deg,rgba(17,17,17,.06),rgba(17,17,17,.02));border-color:rgba(17,17,17,.22)}
+    .hint{margin-top:12px;font-size:13px;color:var(--m)}
+    .qr{padding:22px;border-left:1px solid rgba(17,17,17,.10);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:rgba(255,255,255,.6)}
+    .qrTitle{font-size:13px;color:var(--m)}
+    img{width:180px;height:180px;border-radius:16px;border:1px solid rgba(17,17,17,.12);background:#fff}
+    .qrSub{font-size:12px;color:var(--m);text-align:center;max-width:24ch}
+    @media(max-width:860px){.card{grid-template-columns:1fr}.qr{border-left:none;border-top:1px solid rgba(17,17,17,.10)}}
+    @media(max-width:520px){.btns{grid-template-columns:1fr}h1{font-size:28px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="top">
+        <div class="badge">Instalação oficial</div>
+        <h1>Baixe o app da Linda Moça Exclusive</h1>
+        <p>Você será direcionado automaticamente para a loja correta. Se não abrir, toque no botão abaixo.</p>
+
+        <div class="btns">
+          <a class="btn primary" id="primary" href="#">Instalar agora <span aria-hidden="true">→</span></a>
+          <a class="btn" href="https://apps.apple.com/br/app/linda-mo%C3%A7a-exclusive/id6736709634" target="_blank" rel="noopener">App Store →</a>
+          <a class="btn" href="https://play.google.com/store/apps/details?id=com.wnapp.id1720538323956&hl=pt_BR" target="_blank" rel="noopener">Google Play →</a>
+        </div>
+
+        <div class="hint" id="hint"></div>
+      </div>
+
+      <div class="qr" id="qrBox">
+        <div class="qrTitle">Aponte a câmera</div>
+        <img id="qr" alt="QR Code para instalar o app" />
+        <div class="qrSub">No celular, abre a loja certa.</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const IOS_URL = "https://apps.apple.com/br/app/linda-mo%C3%A7a-exclusive/id6736709634";
+      const ANDROID_URL = "https://play.google.com/store/apps/details?id=com.wnapp.id1720538323956&hl=pt_BR";
+      const UTM = ""; // opcional: "?utm_source=site&utm_medium=redirect&utm_campaign=instalar_app"
+
+      const ua = navigator.userAgent || "";
+      const isAndroid = /Android/i.test(ua);
+      const isIOS = /iPhone|iPad|iPod/i.test(ua);
+      const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(ua);
+
+      const isInAppWebView = (function(){
+        const wv = /\bwv\b/.test(ua);
+        const iOSWebView = isIOS && !/Safari/i.test(ua);
+        const fb = /FBAN|FBAV|Instagram/i.test(ua);
+        return wv || iOSWebView || fb;
+      })();
+
+      const target = (isIOS ? IOS_URL : ANDROID_URL) + UTM;
+
+      document.getElementById("primary").href = target;
+
+      const hint = document.getElementById("hint");
+      if (hint){
+        if (isIOS) hint.textContent = "Detectado iOS: redirecionando para a App Store…";
+        else if (isAndroid) hint.textContent = "Detectado Android: redirecionando para o Google Play…";
+        else hint.textContent = "No computador? Use o QR Code ou escolha a loja abaixo.";
+      }
+
+      const appUrl = location.origin + location.pathname;
+      const qr = document.getElementById("qr");
+      if (qr) qr.src = "https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=" + encodeURIComponent(appUrl);
+
+      if (isMobile) document.getElementById("qrBox").style.display = "none";
+
+      if (isMobile && !isInAppWebView){
+        setTimeout(()=> location.href = target, 800);
+      } else if (isMobile && isInAppWebView && hint){
+        hint.textContent = "Abra no navegador do celular (Chrome/Safari) para instalar pela loja oficial.";
+      }
+    })();
+  </script>
+</body>
+</html>
