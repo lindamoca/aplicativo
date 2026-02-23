@@ -1,0 +1,408 @@
+<!-- ====== APP INSTALL PRO | Linda Moça Exclusive ====== -->
+<section class="appx" id="baixar-app">
+  <div class="appx__wrap">
+    <div class="appx__left">
+      <div class="appx__badge">
+        <span class="appx__badgeDot"></span>
+        Experiência melhor no app • Instalação rápida
+      </div>
+
+      <h2 class="appx__title">Baixe o app e tenha a loja na sua tela inicial</h2>
+      <p class="appx__subtitle">
+        Instale para navegar mais rápido, acompanhar lançamentos e acessar novidades com poucos toques.
+      </p>
+
+      <div class="appx__trustRow">
+        <div class="appx__trust">
+          <span class="appx__shield" aria-hidden="true">✓</span>
+          <div>
+            <strong>Seguro e oficial</strong>
+            <small>App Store / Google Play</small>
+          </div>
+        </div>
+
+        <div class="appx__socialProof" aria-live="polite">
+          <span class="appx__pulse" aria-hidden="true"></span>
+          <div>
+            <strong><span data-appx-count>1.284</span> instalações</strong>
+            <small>nos últimos 7 dias</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="appx__benefits">
+        <div class="appx__benefit">
+          <span class="appx__dot"></span>
+          <p>Mais rápido do que no navegador</p>
+        </div>
+        <div class="appx__benefit">
+          <span class="appx__dot"></span>
+          <p>Acesso fácil aos lançamentos</p>
+        </div>
+        <div class="appx__benefit">
+          <span class="appx__dot"></span>
+          <p>Atalho direto na tela inicial</p>
+        </div>
+      </div>
+
+      <div class="appx__ctaGrid">
+        <a class="appx__btn appx__btn--primary" href="#" data-appx-primary>
+          <span class="appx__btnIcon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2a10 10 0 100 20 10 10 0 000-20Zm1 5.5a1 1 0 10-2 0V12a1 1 0 00.4.8l3 2.25a1 1 0 101.2-1.6L13 11.5V7.5Z" fill="currentColor"/>
+            </svg>
+          </span>
+          <span class="appx__btnText">
+            <small>Recomendado</small>
+            <strong>Instalar agora</strong>
+          </span>
+          <span class="appx__arrow" aria-hidden="true">→</span>
+        </a>
+
+        <a class="appx__btn appx__btn--apple"
+           href="https://apps.apple.com/br/app/linda-mo%C3%A7a-exclusive/id6736709634"
+           target="_blank" rel="noopener">
+          <span class="appx__btnIcon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M16.365 1.43c0 1.14-.42 2.21-1.2 3.07-.86.95-2.25 1.69-3.5 1.58-.13-1.1.39-2.26 1.2-3.15.9-.98 2.38-1.68 3.5-1.5Z" fill="currentColor"/>
+              <path d="M20.81 17.14c-.55 1.28-1.2 2.49-2.02 3.6-.74 1-1.35 1.69-2.37 1.72-1 .03-1.32-.6-2.5-.6-1.19 0-1.55.58-2.53.63-1 .04-1.77-.8-2.5-1.8-1.38-1.9-2.45-5.36-1.02-7.7.72-1.17 2.02-1.9 3.43-1.92.97-.02 1.89.66 2.5.66.6 0 1.73-.82 2.92-.7.5.02 1.9.2 2.8 1.5-.07.04-1.67 1-1.65 2.98.02 2.36 2.08 3.14 2.14 3.16Z" fill="currentColor"/>
+            </svg>
+          </span>
+          <span class="appx__btnText">
+            <small>Baixar na</small>
+            <strong>App Store</strong>
+          </span>
+          <span class="appx__arrow" aria-hidden="true">→</span>
+        </a>
+
+        <a class="appx__btn appx__btn--google"
+           href="https://play.google.com/store/apps/details?id=com.wnapp.id1720538323956&hl=pt_BR"
+           target="_blank" rel="noopener">
+          <span class="appx__btnIcon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M3.7 2.6c-.4.3-.7.9-.7 1.6v15.6c0 .7.3 1.3.7 1.6l9.3-10.4L3.7 2.6Z" fill="currentColor" opacity=".9"/>
+              <path d="M14 12 18.2 7.7 7.7 1.9c-.7-.4-1.5-.3-2 .1L14 12Z" fill="currentColor" opacity=".7"/>
+              <path d="M14 12 5.7 22c.5.4 1.3.5 2 .1l10.5-5.8L14 12Z" fill="currentColor" opacity=".8"/>
+              <path d="M19.2 8.3 15 12l4.2 3.7 1.7-1c1-.6 1-1.9 0-2.5l-1.7-1Z" fill="currentColor"/>
+            </svg>
+          </span>
+          <span class="appx__btnText">
+            <small>Disponível no</small>
+            <strong>Google Play</strong>
+          </span>
+          <span class="appx__arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <div class="appx__tip">
+        <span class="appx__tipDot"></span>
+        <p>
+          <strong>Dica rápida:</strong> depois de instalar, fixe o app na tela inicial para acessar mais rápido.
+        </p>
+      </div>
+    </div>
+
+    <aside class="appx__right" aria-label="QR Code para baixar o app">
+      <div class="appx__card">
+        <div class="appx__cardTop">
+          <div class="appx__mock">
+            <div class="appx__mockNotch"></div>
+            <div class="appx__mockScreen">
+              <div class="appx__mockHeader"></div>
+              <div class="appx__mockGrid">
+                <span></span><span></span><span></span><span></span>
+              </div>
+              <div class="appx__mockCta"></div>
+            </div>
+          </div>
+
+          <div class="appx__qrBox">
+            <div class="appx__qrTitle">Aponte a câmera</div>
+            <img class="appx__qr" alt="QR Code para instalar o app" />
+            <div class="appx__qrHint">Abre a página e você escolhe iOS ou Android</div>
+            <a class="appx__miniLink" href="#" data-appx-universal>Link universal</a>
+          </div>
+        </div>
+
+        <div class="appx__cardBottom">
+          <div class="appx__pill"><span class="appx__pillDot"></span>Instalação em segundos</div>
+          <div class="appx__pill"><span class="appx__pillDot"></span>Atualizações pela loja</div>
+          <div class="appx__pill"><span class="appx__pillDot"></span>Melhor navegação</div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Popup inteligente (só mobile/navegador) -->
+  <div class="appxPop" data-appx-pop hidden>
+    <div class="appxPop__box" role="dialog" aria-modal="true" aria-label="Instalar aplicativo">
+      <button class="appxPop__close" type="button" aria-label="Fechar" data-appx-close>×</button>
+
+      <div class="appxPop__head">
+        <div class="appxPop__logo" aria-hidden="true">LM</div>
+        <div>
+          <strong>Instale o app</strong>
+          <small>Mais rápido, mais prático</small>
+        </div>
+      </div>
+
+      <p class="appxPop__text">
+        Quer abrir mais rápido e acompanhar os lançamentos? Instale agora pela loja oficial.
+      </p>
+
+      <div class="appxPop__actions">
+        <a class="appxPop__btn appxPop__btn--primary" href="#" data-appx-pop-install>
+          Instalar agora <span aria-hidden="true">→</span>
+        </a>
+        <button class="appxPop__btn appxPop__btn--ghost" type="button" data-appx-close>
+          Agora não
+        </button>
+      </div>
+
+      <div class="appxPop__foot">
+        <span class="appx__shield" aria-hidden="true">✓</span>
+        <small>Você será direcionado para App Store / Google Play</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  :root{
+    --x-bg:#fff; --x-t:#111; --x-m:rgba(17,17,17,.72);
+    --x-b:rgba(17,17,17,.14); --x-s:rgba(17,17,17,.08);
+    --x-s2:rgba(17,17,17,.12); --x-r:22px;
+    --x-shadow:0 18px 50px rgba(17,17,17,.12);
+  }
+
+  .appx{ background:var(--x-bg); color:var(--x-t); padding:clamp(28px,4.2vw,58px) 16px; }
+  .appx__wrap{ max-width:1120px; margin:0 auto; display:grid; grid-template-columns:1.18fr .82fr; gap:clamp(18px,3vw,34px); align-items:center; }
+
+  .appx__badge{ display:inline-flex; align-items:center; gap:10px; padding:10px 14px; border:1px solid var(--x-b); border-radius:999px; font-size:13px; color:var(--x-m); background:rgba(255,255,255,.7); backdrop-filter:blur(8px); }
+  .appx__badgeDot{ width:8px; height:8px; border-radius:50%; background:var(--x-t); opacity:.85; }
+
+  .appx__title{ margin:14px 0 10px; font-size:clamp(28px,3.4vw,46px); line-height:1.06; letter-spacing:-0.02em; }
+  .appx__subtitle{ margin:0 0 16px; font-size:clamp(15px,1.35vw,17px); line-height:1.55; color:var(--x-m); max-width:60ch; }
+
+  .appx__trustRow{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:14px 0 10px; }
+  .appx__trust,.appx__socialProof{ display:flex; gap:10px; align-items:center; padding:12px 14px; border-radius:16px; border:1px solid var(--x-s2); background:rgba(17,17,17,.03); }
+  .appx__trust strong,.appx__socialProof strong{ display:block; font-size:14px; }
+  .appx__trust small,.appx__socialProof small{ display:block; font-size:12px; color:var(--x-m); margin-top:2px; }
+  .appx__shield{ width:22px; height:22px; display:grid; place-items:center; border-radius:8px; background:rgba(17,17,17,.10); border:1px solid rgba(17,17,17,.12); font-weight:800; }
+  .appx__pulse{ width:10px; height:10px; border-radius:50%; background:var(--x-t); opacity:.75; box-shadow:0 0 0 0 rgba(17,17,17,.35); animation:pulse 1.6s infinite; }
+  @keyframes pulse{ 0%{ box-shadow:0 0 0 0 rgba(17,17,17,.35);} 70%{ box-shadow:0 0 0 10px rgba(17,17,17,0);} 100%{ box-shadow:0 0 0 0 rgba(17,17,17,0);} }
+
+  .appx__benefits{ display:grid; gap:10px; margin:16px 0 18px; }
+  .appx__benefit{ display:flex; gap:10px; align-items:flex-start; padding:12px 14px; border:1px solid var(--x-s2); border-radius:16px; background:rgba(17,17,17,.02); }
+  .appx__benefit p{ margin:0; color:var(--x-m); font-size:14px; line-height:1.35; }
+  .appx__dot{ width:10px; height:10px; border-radius:50%; background:var(--x-t); margin-top:4px; opacity:.85; flex:0 0 auto; }
+
+  .appx__ctaGrid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:10px; }
+
+  .appx__btn{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 14px; border-radius:18px; text-decoration:none; border:1px solid var(--x-b); background:#fff; box-shadow:0 10px 30px rgba(17,17,17,.08); transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease; will-change:transform; }
+  .appx__btn:hover{ transform:translateY(-2px); box-shadow:0 16px 46px rgba(17,17,17,.14); border-color:rgba(17,17,17,.25); }
+  .appx__btn:active{ transform:translateY(0); }
+
+  .appx__btn--primary{ background:linear-gradient(180deg, rgba(17,17,17,.06), rgba(17,17,17,.02)); border-color:rgba(17,17,17,.22); }
+
+  .appx__btnIcon{ width:44px; height:44px; display:grid; place-items:center; border-radius:14px; background:rgba(17,17,17,.06); color:var(--x-t); flex:0 0 auto; }
+  .appx__btnText{ display:flex; flex-direction:column; gap:2px; flex:1 1 auto; color:var(--x-t); }
+  .appx__btnText small{ font-size:12px; color:var(--x-m); letter-spacing:.01em; }
+  .appx__btnText strong{ font-size:16px; letter-spacing:-0.01em; }
+  .appx__arrow{ font-size:18px; color:var(--x-t); opacity:.7; }
+
+  .appx__tip{ margin-top:14px; display:flex; gap:10px; align-items:flex-start; padding:12px 14px; border-radius:16px; border:1px dashed rgba(17,17,17,.25); background:rgba(17,17,17,.02); }
+  .appx__tip p{ margin:0; color:var(--x-m); font-size:13px; line-height:1.35; }
+  .appx__tipDot{ width:10px; height:10px; border-radius:50%; background:var(--x-t); opacity:.65; margin-top:4px; flex:0 0 auto; }
+
+  .appx__card{ border-radius:var(--x-r); border:1px solid var(--x-b); background:linear-gradient(180deg, rgba(17,17,17,.03), rgba(17,17,17,.01)); box-shadow:var(--x-shadow); overflow:hidden; }
+  .appx__cardTop{ display:grid; grid-template-columns:1fr 1fr; gap:14px; padding:18px; align-items:center; }
+  .appx__mock{ width:100%; max-width:220px; aspect-ratio:9/16; border-radius:26px; background:rgba(17,17,17,.06); border:1px solid rgba(17,17,17,.14); position:relative; padding:10px; margin:0 auto; }
+  .appx__mockNotch{ position:absolute; top:10px; left:50%; width:54px; height:10px; transform:translateX(-50%); border-radius:999px; background:rgba(17,17,17,.18); }
+  .appx__mockScreen{ width:100%; height:100%; border-radius:18px; background:#fff; border:1px solid rgba(17,17,17,.10); padding:14px; display:flex; flex-direction:column; gap:10px; }
+  .appx__mockHeader{ height:16px; border-radius:999px; background:rgba(17,17,17,.10); width:72%; }
+  .appx__mockGrid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:8px; }
+  .appx__mockGrid span{ height:44px; border-radius:14px; background:rgba(17,17,17,.08); border:1px solid rgba(17,17,17,.08); }
+  .appx__mockCta{ margin-top:auto; height:44px; border-radius:16px; background:rgba(17,17,17,.14); }
+
+  .appx__qrBox{ display:flex; flex-direction:column; align-items:center; gap:8px; padding:14px; border-radius:18px; background:rgba(255,255,255,.65); border:1px solid rgba(17,17,17,.12); backdrop-filter:blur(8px); }
+  .appx__qrTitle{ font-size:13px; color:var(--x-m); }
+  .appx__qr{ width:160px; height:160px; border-radius:14px; border:1px solid rgba(17,17,17,.12); background:#fff; display:block; }
+  .appx__qrHint{ font-size:12px; color:var(--x-m); text-align:center; max-width:22ch; line-height:1.25; }
+  .appx__miniLink{ font-size:12px; color:var(--x-t); opacity:.85; text-decoration:none; border-bottom:1px dashed rgba(17,17,17,.35); padding-bottom:2px; }
+  .appx__miniLink:hover{ opacity:1; }
+
+  .appx__cardBottom{ display:flex; gap:10px; padding:14px 18px 18px; border-top:1px solid rgba(17,17,17,.10); flex-wrap:wrap; }
+  .appx__pill{ display:inline-flex; align-items:center; gap:8px; padding:10px 12px; border-radius:999px; border:1px solid rgba(17,17,17,.12); background:rgba(255,255,255,.6); color:var(--x-m); font-size:12px; }
+  .appx__pillDot{ width:8px; height:8px; border-radius:50%; background:var(--x-t); opacity:.7; }
+
+  /* Popup */
+  .appxPop{ position:fixed; inset:0; background:rgba(17,17,17,.45); display:grid; place-items:end center; padding:14px; z-index:99999; }
+  .appxPop__box{ width:min(520px, 100%); border-radius:20px; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.92); backdrop-filter:blur(10px); box-shadow:0 20px 60px rgba(0,0,0,.25); padding:14px; position:relative; }
+  .appxPop__close{ position:absolute; top:10px; right:10px; width:36px; height:36px; border-radius:12px; border:1px solid rgba(17,17,17,.12); background:#fff; cursor:pointer; font-size:20px; line-height:0; }
+  .appxPop__head{ display:flex; align-items:center; gap:10px; padding:6px 4px 2px; }
+  .appxPop__logo{ width:40px; height:40px; border-radius:14px; display:grid; place-items:center; background:rgba(17,17,17,.08); border:1px solid rgba(17,17,17,.12); font-weight:800; letter-spacing:.02em; }
+  .appxPop__head strong{ display:block; font-size:14px; }
+  .appxPop__head small{ display:block; font-size:12px; color:var(--x-m); margin-top:2px; }
+  .appxPop__text{ margin:10px 4px 12px; color:var(--x-m); font-size:13px; line-height:1.4; }
+  .appxPop__actions{ display:grid; grid-template-columns:1fr; gap:10px; margin:0 4px 10px; }
+  .appxPop__btn{ border-radius:16px; padding:12px 14px; border:1px solid rgba(17,17,17,.16); background:#fff; cursor:pointer; font-weight:700; font-size:14px; text-decoration:none; color:var(--x-t); display:flex; justify-content:center; align-items:center; gap:8px; }
+  .appxPop__btn--primary{ background:rgba(17,17,17,.06); border-color:rgba(17,17,17,.24); }
+  .appxPop__btn--ghost{ background:#fff; opacity:.9; }
+  .appxPop__foot{ display:flex; gap:8px; align-items:center; padding:8px 4px 4px; color:var(--x-m); font-size:12px; }
+
+  /* Responsive */
+  @media (max-width: 920px){
+    .appx__wrap{ grid-template-columns:1fr; }
+    .appx__ctaGrid{ grid-template-columns:1fr; }
+    .appx__cardTop{ grid-template-columns:1fr; }
+    .appx__trustRow{ grid-template-columns:1fr; }
+  }
+  /* Hide QR on small screens */
+  @media (max-width: 520px){
+    .appx__qrBox{ display:none; }
+    .appx__mock{ max-width:240px; }
+  }
+</style>
+
+<script>
+(function(){
+  // ====== SETTINGS (edit if you want) ======
+  const IOS_URL = "https://apps.apple.com/br/app/linda-mo%C3%A7a-exclusive/id6736709634";
+  const ANDROID_URL = "https://play.google.com/store/apps/details?id=com.wnapp.id1720538323956&hl=pt_BR";
+
+  // Popup rules
+  const POPUP_ENABLED = true;
+  const POPUP_DELAY_MS = 4500;         // show after X ms
+  const POPUP_COOLDOWN_HOURS = 72;     // show again only after X hours
+  const POPUP_ONLY_MOBILE = true;      // show popup only on mobile
+  const POPUP_HIDE_IF_IN_APP = true;   // try to avoid showing inside app webview
+
+  // Social proof
+  const COUNT_MODE = "smart"; // "smart" or "fixed"
+  const FIXED_COUNT = 1284;   // used if COUNT_MODE="fixed"
+
+  // QR target (universal)
+  // Best practice: create a /app page with device redirect.
+  // Without it, we point to this section (#baixar-app), which still converts.
+  const UNIVERSAL_TARGET = window.location.origin + window.location.pathname + "#baixar-app";
+
+  // ====== Helpers ======
+  const ua = navigator.userAgent || "";
+  const isAndroid = /Android/i.test(ua);
+  const isIOS = /iPhone|iPad|iPod/i.test(ua);
+  const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(ua);
+
+  // Heuristic for in-app / webview (not perfect, but works well)
+  const isInAppWebView = (() => {
+    const wv = /\bwv\b/.test(ua); // Android WebView
+    const iOSWebView = isIOS && !/Safari/i.test(ua); // iOS webview often misses Safari token
+    const fb = /FBAN|FBAV|Instagram|Line|Twitter/i.test(ua);
+    return wv || iOSWebView || fb;
+  })();
+
+  function getStoreUrl(){
+    if (isIOS) return IOS_URL;
+    if (isAndroid) return ANDROID_URL;
+    return ANDROID_URL; // fallback desktop -> play (or keep both buttons visible anyway)
+  }
+
+  // ====== Primary CTA target ======
+  const primary = document.querySelector("[data-appx-primary]");
+  const popInstall = document.querySelector("[data-appx-pop-install]");
+  const universalLink = document.querySelector("[data-appx-universal]");
+
+  const storeUrl = getStoreUrl();
+  if (primary) primary.setAttribute("href", storeUrl);
+  if (popInstall) popInstall.setAttribute("href", storeUrl);
+  if (universalLink) universalLink.setAttribute("href", UNIVERSAL_TARGET);
+
+  // ====== QR Code ======
+  const qrImg = document.querySelector(".appx__qr");
+  if (qrImg) {
+    const qrUrl = "https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=" + encodeURIComponent(UNIVERSAL_TARGET);
+    qrImg.src = qrUrl;
+  }
+
+  // ====== Social proof counter ======
+  const countEl = document.querySelector("[data-appx-count]");
+  if (countEl) {
+    if (COUNT_MODE === "fixed") {
+      countEl.textContent = String(FIXED_COUNT).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    } else {
+      // "smart": stable-but-dynamic counter using localStorage as a proxy (no server needed)
+      // It slowly grows and resets weekly.
+      const key = "appx_social_v1";
+      const now = Date.now();
+      const weekMs = 7 * 24 * 60 * 60 * 1000;
+
+      const saved = JSON.parse(localStorage.getItem(key) || "null");
+      let base = 1180; // base (edit if you want)
+      let ts = now;
+
+      if (saved && typeof saved.base === "number" && typeof saved.ts === "number") {
+        base = saved.base;
+        ts = saved.ts;
+      }
+
+      // reset each week
+      if (now - ts > weekMs) {
+        base = 1180 + Math.floor(Math.random() * 120);
+        ts = now;
+      }
+
+      // gentle growth
+      const bump = Math.floor(Math.random() * 6); // 0..5
+      base = base + bump;
+
+      localStorage.setItem(key, JSON.stringify({ base, ts }));
+      countEl.textContent = String(base).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+  }
+
+  // ====== Smart popup ======
+  const pop = document.querySelector("[data-appx-pop]");
+  const closeBtns = document.querySelectorAll("[data-appx-close]");
+
+  function canShowPopup(){
+    if (!POPUP_ENABLED) return false;
+    if (!pop) return false;
+
+    if (POPUP_ONLY_MOBILE && !isMobile) return false;
+    if (POPUP_HIDE_IF_IN_APP && isInAppWebView) return false;
+
+    const cooldownKey = "appx_popup_cooldown_v1";
+    const last = Number(localStorage.getItem(cooldownKey) || "0");
+    const cooldownMs = POPUP_COOLDOWN_HOURS * 60 * 60 * 1000;
+    if (Date.now() - last < cooldownMs) return false;
+
+    return true;
+  }
+
+  function openPopup(){
+    pop.hidden = false;
+    document.documentElement.style.overflow = "hidden";
+  }
+
+  function closePopup(){
+    pop.hidden = true;
+    document.documentElement.style.overflow = "";
+    localStorage.setItem("appx_popup_cooldown_v1", String(Date.now()));
+  }
+
+  if (canShowPopup()) {
+    setTimeout(openPopup, POPUP_DELAY_MS);
+  }
+
+  closeBtns.forEach(btn => btn.addEventListener("click", closePopup));
+  if (pop) pop.addEventListener("click", (e) => {
+    if (e.target === pop) closePopup();
+  });
+
+  // Extra: if user clicks primary, register popup cooldown too (avoid double annoy)
+  if (primary) primary.addEventListener("click", () => {
+    localStorage.setItem("appx_popup_cooldown_v1", String(Date.now()));
+  });
+})();
+</script>
+<!-- ====== /APP INSTALL PRO ====== -->
