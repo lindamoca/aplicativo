@@ -1,182 +1,37 @@
-{% assign is_app_page = false %}
-{% if page and (page.handle == 'app' or page.slug == 'app') %}
-  {% assign is_app_page = true %}
-{% endif %}
+name: Deploy static site to GitHub Pages
 
-{% if is_app_page %}
-  <section class="nsapp">
-    <div class="nsapp__wrap">
-      <div class="nsapp__card">
-        <div class="nsapp__top">
-          <span class="nsapp__badge">Instalação oficial</span>
-          <h1 class="nsapp__title">Baixe o app da Linda Moça Exclusive</h1>
-          <p class="nsapp__sub">Você será direcionado automaticamente para a loja correta. Se não abrir, toque no botão abaixo.</p>
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
 
-          <div class="nsapp__btns">
-            <a class="nsapp__btn nsapp__btn--primary" id="nsappPrimary" href="#" rel="noopener">
-              Instalar agora <span aria-hidden="true">→</span>
-            </a>
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
-            <a class="nsapp__btn" href="https://apps.apple.com/br/app/linda-mo%C3%A7a-exclusive/id6736709634" target="_blank" rel="noopener">
-              App Store <span aria-hidden="true">→</span>
-            </a>
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
-            <a class="nsapp__btn" href="https://play.google.com/store/apps/details?id=com.wnapp.id1720538323956&hl=pt_BR" target="_blank" rel="noopener">
-              Google Play <span aria-hidden="true">→</span>
-            </a>
-          </div>
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-          <div class="nsapp__hint" id="nsappHint"></div>
-        </div>
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
 
-        <div class="nsapp__qr" id="nsappQrBox" aria-label="QR Code para instalar o app">
-          <div class="nsapp__qrTitle">Aponte a câmera</div>
-          <img id="nsappQr" alt="QR Code para instalar o app" />
-          <div class="nsapp__qrSub">No celular, abre a loja certa.</div>
-        </div>
-      </div>
-    </div>
-  </section>
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
 
-  <style>
-    .nsapp{ padding:40px 16px; background:#fff; color:#111; }
-    .nsapp__wrap{ max-width:980px; margin:0 auto; }
-    .nsapp__card{
-      border:1px solid rgba(17,17,17,.14);
-      border-radius:22px;
-      box-shadow:0 18px 50px rgba(17,17,17,.12);
-      overflow:hidden;
-      display:grid;
-      grid-template-columns:1.2fr .8fr;
-      gap:0;
-      background:linear-gradient(180deg, rgba(17,17,17,.03), rgba(17,17,17,.01));
-    }
-    .nsapp__top{ padding:22px; }
-    .nsapp__badge{
-      display:inline-flex; align-items:center;
-      padding:10px 14px;
-      border:1px solid rgba(17,17,17,.14);
-      border-radius:999px;
-      font-size:13px;
-      color:rgba(17,17,17,.72);
-      background:rgba(255,255,255,.7);
-    }
-    .nsapp__title{ margin:14px 0 8px; font-size:32px; line-height:1.08; letter-spacing:-.02em; }
-    .nsapp__sub{ margin:0 0 16px; color:rgba(17,17,17,.72); line-height:1.5; max-width:60ch; }
-
-    .nsapp__btns{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px; }
-    .nsapp__btn{
-      display:flex; align-items:center; justify-content:center; gap:8px;
-      padding:14px 14px;
-      border-radius:18px;
-      border:1px solid rgba(17,17,17,.14);
-      background:#fff;
-      text-decoration:none;
-      color:#111;
-      font-weight:700;
-      transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-      box-shadow:0 10px 30px rgba(17,17,17,.08);
-    }
-    .nsapp__btn:hover{ transform:translateY(-2px); box-shadow:0 16px 46px rgba(17,17,17,.14); border-color:rgba(17,17,17,.25); }
-    .nsapp__btn--primary{
-      grid-column:1 / -1;
-      background:linear-gradient(180deg, rgba(17,17,17,.06), rgba(17,17,17,.02));
-      border-color:rgba(17,17,17,.22);
-    }
-
-    .nsapp__hint{ margin-top:12px; font-size:13px; color:rgba(17,17,17,.72); }
-
-    .nsapp__qr{
-      padding:22px;
-      border-left:1px solid rgba(17,17,17,.10);
-      display:flex; flex-direction:column; align-items:center; justify-content:center;
-      gap:8px;
-      background:rgba(255,255,255,.6);
-    }
-    .nsapp__qrTitle{ font-size:13px; color:rgba(17,17,17,.72); }
-    .nsapp__qr img{
-      width:180px; height:180px;
-      border-radius:16px;
-      border:1px solid rgba(17,17,17,.12);
-      background:#fff;
-      display:block;
-    }
-    .nsapp__qrSub{ font-size:12px; color:rgba(17,17,17,.72); text-align:center; max-width:24ch; }
-
-    @media(max-width:860px){
-      .nsapp__card{ grid-template-columns:1fr; }
-      .nsapp__qr{ border-left:none; border-top:1px solid rgba(17,17,17,.10); }
-    }
-    @media(max-width:520px){
-      .nsapp__btns{ grid-template-columns:1fr; }
-      .nsapp__title{ font-size:28px; }
-    }
-  </style>
-
-  <script>
-  (function(){
-    const IOS_URL = "https://apps.apple.com/br/app/linda-mo%C3%A7a-exclusive/id6736709634";
-    const ANDROID_URL = "https://play.google.com/store/apps/details?id=com.wnapp.id1720538323956&hl=pt_BR";
-
-    // (Opcional) UTMs pra você medir origem:
-    // const UTM = "?utm_source=site&utm_medium=redirect&utm_campaign=instalar_app";
-    const UTM = "";
-
-    const ua = navigator.userAgent || "";
-    const isAndroid = /Android/i.test(ua);
-    const isIOS = /iPhone|iPad|iPod/i.test(ua);
-    const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(ua);
-
-    // Heurística webview/in-app (tenta evitar redirecionar quando estiver dentro de webview)
-    const isInAppWebView = (function(){
-      const wv = /\\bwv\\b/.test(ua);
-      const iOSWebView = isIOS && !/Safari/i.test(ua);
-      const fb = /FBAN|FBAV|Instagram/i.test(ua);
-      return wv || iOSWebView || fb;
-    })();
-
-    function storeUrl(){
-      if (isIOS) return IOS_URL + UTM;
-      if (isAndroid) return ANDROID_URL + UTM;
-      return ANDROID_URL + UTM; // fallback desktop
-    }
-
-    const primary = document.getElementById("nsappPrimary");
-    const hint = document.getElementById("nsappHint");
-    const qrBox = document.getElementById("nsappQrBox");
-    const qr = document.getElementById("nsappQr");
-
-    const target = storeUrl();
-    if (primary) primary.href = target;
-
-    // QR aponta pra /app (essa página), perfeito pra escolher e redirecionar automático no celular
-    const appUrl = window.location.origin + window.location.pathname;
-    if (qr) {
-      qr.src = "https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=" + encodeURIComponent(appUrl);
-    }
-
-    // No mobile, não precisa QR
-    if (isMobile && qrBox) qrBox.style.display = "none";
-
-    // Mensagem
-    if (hint){
-      if (isIOS) hint.textContent = "Detectado iOS: redirecionando para a App Store…";
-      else if (isAndroid) hint.textContent = "Detectado Android: redirecionando para o Google Play…";
-      else hint.textContent = "No computador? Use o QR Code ou escolha a loja abaixo.";
-    }
-
-    // Redirect automático (somente mobile e fora de webview)
-    if (isMobile && !isInAppWebView){
-      setTimeout(function(){
-        window.location.href = target;
-      }, 800);
-    } else if (isMobile && isInAppWebView && hint){
-      hint.textContent = "Abra no navegador do celular (Chrome/Safari) para instalar pela loja oficial.";
-    }
-  })();
-  </script>
-
-{% else %}
-  {# Conteúdo normal da página (seu tema já tem) #}
-  {{ page.content }}
-{% endif %}
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
