@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Baixar App | Linda Moça Exclusive</title>
   <meta name="description" content="Instale o app oficial da Linda Moça Exclusive. Redirecionamento automático para App Store ou Google Play." />
+
   <style>
     :root{--t:#111;--m:rgba(17,17,17,.72);--b:rgba(17,17,17,.14);--s:0 18px 50px rgba(17,17,17,.12)}
     body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:#fff;color:var(--t)}
@@ -39,8 +40,8 @@
 
         <div class="btns">
           <a class="btn primary" id="primary" href="#">Instalar agora <span aria-hidden="true">→</span></a>
-          <a class="btn" href="https://apps.apple.com/br/app/linda-mo%C3%A7a-exclusive/id6736709634" target="_blank" rel="noopener">App Store →</a>
-          <a class="btn" href="https://play.google.com/store/apps/details?id=com.wnapp.id1720538323956&hl=pt_BR" target="_blank" rel="noopener">Google Play →</a>
+          <a class="btn" id="btnApple" href="https://apps.apple.com/br/app/linda-mo%C3%A7a-exclusive/id6736709634" target="_blank" rel="noopener">App Store →</a>
+          <a class="btn" id="btnPlay" href="https://play.google.com/store/apps/details?id=com.wnapp.id1720538323956&hl=pt_BR" target="_blank" rel="noopener">Google Play →</a>
         </div>
 
         <div class="hint" id="hint"></div>
@@ -56,26 +57,49 @@
 
   <script>
     (function(){
+      // ===== Stores =====
       const IOS_URL = "https://apps.apple.com/br/app/linda-mo%C3%A7a-exclusive/id6736709634";
       const ANDROID_URL = "https://play.google.com/store/apps/details?id=com.wnapp.id1720538323956&hl=pt_BR";
-      const UTM = ""; // opcional: "?utm_source=site&utm_medium=redirect&utm_campaign=instalar_app"
 
+      // ===== Redirect behavior =====
+      const REDIRECT_DELAY_MS = 400; // redirect automático no mobile
+      const USE_REPLACE = true;      // evita voltar pra página ao apertar "voltar"
+      const HIDE_QR_ON_MOBILE = true;
+
+      // ===== User agent detection =====
       const ua = navigator.userAgent || "";
       const isAndroid = /Android/i.test(ua);
       const isIOS = /iPhone|iPad|iPod/i.test(ua);
       const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(ua);
 
+      // Heurística pra evitar redirect dentro de webview (mais comum em social, mas seguro manter)
       const isInAppWebView = (function(){
-        const wv = /\bwv\b/.test(ua);
-        const iOSWebView = isIOS && !/Safari/i.test(ua);
-        const fb = /FBAN|FBAV|Instagram/i.test(ua);
+        const wv = /\bwv\b/.test(ua);                 // Android WebView
+        const iOSWebView = isIOS && !/Safari/i.test(ua); // iOS webview
+        const fb = /FBAN|FBAV|Instagram/i.test(ua);   // Meta/Instagram
         return wv || iOSWebView || fb;
       })();
 
-      const target = (isIOS ? IOS_URL : ANDROID_URL) + UTM;
+      // ===== Preserve Ads params (gclid/utm/etc.) =====
+      // Se o clique vier do Google Ads, ele traz gclid e/ou UTMs em window.location.search.
+      // Vamos manter isso no redirect (sem inventar query nova).
+      const qs = window.location.search || "";
 
-      document.getElementById("primary").href = target;
+      // ===== Compute target =====
+      const storeBase = isIOS ? IOS_URL : ANDROID_URL;
+      const target = storeBase + qs;
 
+      // ===== Wire buttons =====
+      const primary = document.getElementById("primary");
+      if (primary) primary.href = target;
+
+      // Mantém botões secundários também com parâmetros (ajuda em debug e consistência)
+      const btnApple = document.getElementById("btnApple");
+      const btnPlay = document.getElementById("btnPlay");
+      if (btnApple) btnApple.href = IOS_URL + qs;
+      if (btnPlay) btnPlay.href = ANDROID_URL + qs;
+
+      // ===== Hint message =====
       const hint = document.getElementById("hint");
       if (hint){
         if (isIOS) hint.textContent = "Detectado iOS: redirecionando para a App Store…";
@@ -83,14 +107,23 @@
         else hint.textContent = "No computador? Use o QR Code ou escolha a loja abaixo.";
       }
 
-      const appUrl = location.origin + location.pathname;
+      // ===== QR Code (aponta para esta mesma página; no celular cai e redireciona) =====
+      const appUrl = location.origin + location.pathname + qs;
       const qr = document.getElementById("qr");
-      if (qr) qr.src = "https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=" + encodeURIComponent(appUrl);
+      if (qr) {
+        qr.src = "https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=" + encodeURIComponent(appUrl);
+      }
+      if (HIDE_QR_ON_MOBILE && isMobile) {
+        const qrBox = document.getElementById("qrBox");
+        if (qrBox) qrBox.style.display = "none";
+      }
 
-      if (isMobile) document.getElementById("qrBox").style.display = "none";
-
+      // ===== Auto redirect on mobile (search ads usually open in browser, so this works great) =====
       if (isMobile && !isInAppWebView){
-        setTimeout(()=> location.href = target, 800);
+        setTimeout(function(){
+          if (USE_REPLACE) window.location.replace(target);
+          else window.location.href = target;
+        }, REDIRECT_DELAY_MS);
       } else if (isMobile && isInAppWebView && hint){
         hint.textContent = "Abra no navegador do celular (Chrome/Safari) para instalar pela loja oficial.";
       }
