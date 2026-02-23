@@ -15,10 +15,7 @@
       --s:0 28px 70px rgba(15,15,16,.14);
       --s2:0 10px 26px rgba(15,15,16,.10);
       --r:24px;
-      --r2:18px;
       --bg:#ffffff;
-      --soft:rgba(15,15,16,.04);
-      --soft2:rgba(15,15,16,.06);
     }
 
     *{box-sizing:border-box}
@@ -34,7 +31,7 @@
 
     .wrap{max-width:1080px;margin:0 auto;padding:48px 16px}
     .shell{
-      border:1px solid var(--b2);
+      border:1px solid rgba(15,15,16,.10);
       border-radius:28px;
       background:rgba(255,255,255,.72);
       backdrop-filter: blur(10px);
@@ -62,7 +59,7 @@
       align-items:center;
       gap:10px;
       padding:10px 14px;
-      border:1px solid var(--b);
+      border:1px solid rgba(15,15,16,.14);
       border-radius:999px;
       font-size:13px;
       color:var(--m);
@@ -113,17 +110,18 @@
     .trustCard strong{display:block;font-size:14px;letter-spacing:-.01em}
     .trustCard small{display:block;font-size:12px;color:var(--m);margin-top:2px;line-height:1.2}
 
+    /* ✅ bolinha pulsando verde */
     .pulse{
       width:10px;height:10px;border-radius:50%;
-      background:var(--t);
-      opacity:.75;
-      box-shadow:0 0 0 0 rgba(15,15,16,.28);
+      background:#16a34a;
+      opacity:.9;
+      box-shadow:0 0 0 0 rgba(22,163,74,.30);
       animation:pulse 1.6s infinite;
     }
     @keyframes pulse{
-      0%{box-shadow:0 0 0 0 rgba(15,15,16,.28)}
-      70%{box-shadow:0 0 0 10px rgba(15,15,16,0)}
-      100%{box-shadow:0 0 0 0 rgba(15,15,16,0)}
+      0%{box-shadow:0 0 0 0 rgba(22,163,74,.30)}
+      70%{box-shadow:0 0 0 10px rgba(22,163,74,0)}
+      100%{box-shadow:0 0 0 0 rgba(22,163,74,0)}
     }
 
     .benefits{
@@ -223,7 +221,8 @@
       gap:10px;
       align-items:flex-start;
     }
-    .hintDot{width:10px;height:10px;border-radius:50%;background:var(--t);opacity:.6;margin-top:4px;flex:0 0 auto}
+    /* ✅ bolinha do hint verde */
+    .hintDot{width:10px;height:10px;border-radius:50%;background:#16a34a;opacity:.75;margin-top:4px;flex:0 0 auto}
 
     .qrBox{
       width:100%;
@@ -263,6 +262,12 @@
       padding-bottom:2px;
     }
     .miniLink:hover{opacity:1}
+
+    /* ✅ número de instalações em verde */
+    #spCount{
+      color:#16a34a;
+      font-weight:900;
+    }
 
     @media (max-width: 920px){
       .grid{grid-template-columns:1fr}
@@ -315,7 +320,6 @@
             <a class="btn primary" id="primary" href="#">
               <div class="btnLeft">
                 <span class="btnIcon" aria-hidden="true">
-                  <!-- clock/bolt-ish -->
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                     <path d="M12 2a10 10 0 100 20 10 10 0 000-20Zm1 5.5a1 1 0 10-2 0V12a1 1 0 00.4.8l3 2.25a1 1 0 101.2-1.6L13 11.5V7.5Z" fill="currentColor"/>
                   </svg>
@@ -385,11 +389,11 @@
       const ANDROID_URL = "https://play.google.com/store/apps/details?id=com.wnapp.id1720538323956&hl=pt_BR";
 
       // ===== Redirect behavior =====
-      const REDIRECT_DELAY_MS = 400; // redirect automático no mobile
-      const USE_REPLACE = true;      // evita voltar pra página ao apertar "voltar"
+      const REDIRECT_DELAY_MS = 400;
+      const USE_REPLACE = true;
       const HIDE_QR_ON_MOBILE = true;
 
-      // ===== Social proof (sem servidor): contador estável que cresce devagar e reseta semanalmente =====
+      // ===== Social proof counter (sem servidor) =====
       const spEl = document.getElementById("spCount");
       if (spEl){
         const key = "lm_sp_v1";
@@ -404,18 +408,18 @@
           base = 1180 + Math.floor(Math.random()*140);
           ts = now;
         }
-        base += Math.floor(Math.random()*6); // crescimento suave
+        base += Math.floor(Math.random()*6);
         try { localStorage.setItem(key, JSON.stringify({base, ts})); } catch(e){}
         spEl.textContent = String(base).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
       }
 
-      // ===== User agent detection =====
+      // ===== Device detection =====
       const ua = navigator.userAgent || "";
       const isAndroid = /Android/i.test(ua);
       const isIOS = /iPhone|iPad|iPod/i.test(ua);
       const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(ua);
 
-      // Evita redirect dentro de webviews (mais comum em social, mas seguro manter)
+      // Avoid redirects in webviews
       const isInAppWebView = (function(){
         const wv = /\bwv\b/.test(ua);
         const iOSWebView = isIOS && !/Safari/i.test(ua);
@@ -423,14 +427,14 @@
         return wv || iOSWebView || fb;
       })();
 
-      // ===== Preserve Ads params (gclid/utm/etc.) =====
+      // Preserve Ads params (gclid/utm/etc.)
       const qs = window.location.search || "";
 
-      // ===== Compute target =====
+      // Target
       const storeBase = isIOS ? IOS_URL : ANDROID_URL;
       const target = storeBase + qs;
 
-      // ===== Wire buttons =====
+      // Buttons
       const primary = document.getElementById("primary");
       if (primary) primary.href = target;
 
@@ -439,7 +443,7 @@
       if (btnApple) btnApple.href = IOS_URL + qs;
       if (btnPlay) btnPlay.href = ANDROID_URL + qs;
 
-      // ===== Hint message =====
+      // Hint
       const hint = document.getElementById("hint");
       if (hint){
         const msg =
@@ -449,13 +453,10 @@
         hint.innerHTML = '<span class="hintDot"></span><span>' + msg + '</span>';
       }
 
-      // ===== QR Code (aponta para esta mesma página; no celular cai e redireciona) =====
+      // QR to this page (with params)
       const appUrl = location.origin + location.pathname + qs;
-
       const qr = document.getElementById("qr");
-      if (qr) {
-        qr.src = "https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=" + encodeURIComponent(appUrl);
-      }
+      if (qr) qr.src = "https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=" + encodeURIComponent(appUrl);
 
       const miniLink = document.getElementById("miniLink");
       if (miniLink) miniLink.href = appUrl;
@@ -465,7 +466,7 @@
         if (qrBox) qrBox.style.display = "none";
       }
 
-      // ===== Auto redirect on mobile =====
+      // Auto redirect
       if (isMobile && !isInAppWebView){
         setTimeout(function(){
           if (USE_REPLACE) window.location.replace(target);
