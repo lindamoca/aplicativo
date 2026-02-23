@@ -7,50 +7,373 @@
   <meta name="description" content="Instale o app oficial da Linda Moça Exclusive. Redirecionamento automático para App Store ou Google Play." />
 
   <style>
-    :root{--t:#111;--m:rgba(17,17,17,.72);--b:rgba(17,17,17,.14);--s:0 18px 50px rgba(17,17,17,.12)}
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:#fff;color:var(--t)}
-    .wrap{max-width:980px;margin:0 auto;padding:40px 16px}
-    .card{border:1px solid var(--b);border-radius:22px;box-shadow:var(--s);overflow:hidden;background:linear-gradient(180deg,rgba(17,17,17,.03),rgba(17,17,17,.01));
-      display:grid;grid-template-columns:1.2fr .8fr}
-    .top{padding:22px}
-    .badge{display:inline-flex;padding:10px 14px;border:1px solid var(--b);border-radius:999px;font-size:13px;color:var(--m);background:rgba(255,255,255,.7)}
-    h1{margin:14px 0 8px;font-size:32px;line-height:1.08;letter-spacing:-.02em}
-    p{margin:0 0 16px;color:var(--m);line-height:1.5}
-    .btns{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
-    a.btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;border-radius:18px;border:1px solid var(--b);background:#fff;text-decoration:none;color:#111;font-weight:800;
-      box-shadow:0 10px 30px rgba(17,17,17,.08);transition:.18s}
-    a.btn:hover{transform:translateY(-2px);box-shadow:0 16px 46px rgba(17,17,17,.14);border-color:rgba(17,17,17,.25)}
-    .primary{grid-column:1/-1;background:linear-gradient(180deg,rgba(17,17,17,.06),rgba(17,17,17,.02));border-color:rgba(17,17,17,.22)}
-    .hint{margin-top:12px;font-size:13px;color:var(--m)}
-    .qr{padding:22px;border-left:1px solid rgba(17,17,17,.10);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:rgba(255,255,255,.6)}
+    :root{
+      --t:#0f0f10;
+      --m:rgba(15,15,16,.70);
+      --b:rgba(15,15,16,.14);
+      --b2:rgba(15,15,16,.10);
+      --s:0 28px 70px rgba(15,15,16,.14);
+      --s2:0 10px 26px rgba(15,15,16,.10);
+      --r:24px;
+      --r2:18px;
+      --bg:#ffffff;
+      --soft:rgba(15,15,16,.04);
+      --soft2:rgba(15,15,16,.06);
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color:var(--t);
+      background:
+        radial-gradient(1200px 700px at 15% -10%, rgba(15,15,16,.06), transparent 55%),
+        radial-gradient(900px 600px at 90% 0%, rgba(15,15,16,.05), transparent 55%),
+        var(--bg);
+    }
+
+    .wrap{max-width:1080px;margin:0 auto;padding:48px 16px}
+    .shell{
+      border:1px solid var(--b2);
+      border-radius:28px;
+      background:rgba(255,255,255,.72);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--s);
+      overflow:hidden;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+    }
+
+    .left{padding:26px 26px 22px}
+    .right{
+      border-left:1px solid rgba(15,15,16,.08);
+      background: linear-gradient(180deg, rgba(15,15,16,.03), rgba(15,15,16,.01));
+      padding:22px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border:1px solid var(--b);
+      border-radius:999px;
+      font-size:13px;
+      color:var(--m);
+      background:rgba(255,255,255,.7);
+    }
+    .badgeDot{width:8px;height:8px;border-radius:50%;background:var(--t);opacity:.9}
+
+    h1{
+      margin:14px 0 10px;
+      font-size: clamp(28px, 3.2vw, 46px);
+      line-height:1.05;
+      letter-spacing:-.03em;
+    }
+    p{
+      margin:0 0 16px;
+      color:var(--m);
+      line-height:1.55;
+      font-size: clamp(14px, 1.2vw, 16px);
+      max-width: 62ch;
+    }
+
+    .trustRow{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin: 14px 0 10px;
+    }
+
+    .trustCard{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      padding:12px 14px;
+      border:1px solid rgba(15,15,16,.12);
+      border-radius:16px;
+      background: rgba(15,15,16,.02);
+    }
+
+    .iconBox{
+      width:40px;height:40px;
+      border-radius:14px;
+      display:grid;place-items:center;
+      background: rgba(15,15,16,.06);
+      border:1px solid rgba(15,15,16,.10);
+      flex: 0 0 auto;
+    }
+
+    .trustCard strong{display:block;font-size:14px;letter-spacing:-.01em}
+    .trustCard small{display:block;font-size:12px;color:var(--m);margin-top:2px;line-height:1.2}
+
+    .pulse{
+      width:10px;height:10px;border-radius:50%;
+      background:var(--t);
+      opacity:.75;
+      box-shadow:0 0 0 0 rgba(15,15,16,.28);
+      animation:pulse 1.6s infinite;
+    }
+    @keyframes pulse{
+      0%{box-shadow:0 0 0 0 rgba(15,15,16,.28)}
+      70%{box-shadow:0 0 0 10px rgba(15,15,16,0)}
+      100%{box-shadow:0 0 0 0 rgba(15,15,16,0)}
+    }
+
+    .benefits{
+      display:grid;
+      gap:10px;
+      margin: 14px 0 18px;
+    }
+    .benefit{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding:12px 14px;
+      border:1px solid rgba(15,15,16,.12);
+      border-radius:16px;
+      background: rgba(255,255,255,.7);
+    }
+    .dot{width:10px;height:10px;border-radius:50%;background:var(--t);opacity:.85;margin-top:4px;flex:0 0 auto}
+    .benefit span{color:var(--m);font-size:14px;line-height:1.35}
+
+    .btns{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top: 10px;
+    }
+
+    a.btn{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:14px 14px;
+      border-radius:18px;
+      border:1px solid rgba(15,15,16,.14);
+      background:#fff;
+      text-decoration:none;
+      color:var(--t);
+      font-weight:800;
+      box-shadow: var(--s2);
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      will-change: transform;
+      position:relative;
+      overflow:hidden;
+    }
+    a.btn:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 18px 52px rgba(15,15,16,.16);
+      border-color: rgba(15,15,16,.28);
+    }
+    a.btn:active{transform: translateY(0)}
+    a.btn::after{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: radial-gradient(500px 120px at 10% 10%, rgba(15,15,16,.06), transparent 55%);
+      opacity:0;
+      transition: opacity .18s ease;
+      pointer-events:none;
+    }
+    a.btn:hover::after{opacity:1}
+
+    .primary{
+      grid-column:1/-1;
+      background: linear-gradient(180deg, rgba(15,15,16,.08), rgba(15,15,16,.02));
+      border-color: rgba(15,15,16,.24);
+    }
+
+    .btnLeft{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+    .btnIcon{
+      width:44px;height:44px;
+      border-radius:14px;
+      display:grid;place-items:center;
+      background: rgba(15,15,16,.06);
+      border:1px solid rgba(15,15,16,.10);
+      flex:0 0 auto;
+    }
+    .btnText{display:flex;flex-direction:column;gap:2px;min-width:0}
+    .btnText small{font-size:12px;color:var(--m);font-weight:700}
+    .btnText strong{font-size:16px;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .arrow{font-size:18px;opacity:.75}
+
+    .hint{
+      margin-top:14px;
+      padding:12px 14px;
+      border-radius:16px;
+      border:1px dashed rgba(15,15,16,.22);
+      background: rgba(15,15,16,.02);
+      color:var(--m);
+      font-size:13px;
+      line-height:1.35;
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+    }
+    .hintDot{width:10px;height:10px;border-radius:50%;background:var(--t);opacity:.6;margin-top:4px;flex:0 0 auto}
+
+    .qrBox{
+      width:100%;
+      max-width: 320px;
+      border:1px solid rgba(15,15,16,.14);
+      border-radius:22px;
+      background: rgba(255,255,255,.72);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 16px 44px rgba(15,15,16,.12);
+      padding:16px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:10px;
+    }
     .qrTitle{font-size:13px;color:var(--m)}
-    img{width:180px;height:180px;border-radius:16px;border:1px solid rgba(17,17,17,.12);background:#fff}
-    .qrSub{font-size:12px;color:var(--m);text-align:center;max-width:24ch}
-    @media(max-width:860px){.card{grid-template-columns:1fr}.qr{border-left:none;border-top:1px solid rgba(17,17,17,.10)}}
-    @media(max-width:520px){.btns{grid-template-columns:1fr}h1{font-size:28px}}
+    .qr{
+      width:190px;height:190px;
+      border-radius:18px;
+      border:1px solid rgba(15,15,16,.12);
+      background:#fff;
+      display:block;
+    }
+    .qrSub{
+      font-size:12px;
+      color:var(--m);
+      text-align:center;
+      max-width:26ch;
+      line-height:1.25;
+    }
+    .miniLink{
+      font-size:12px;
+      color:var(--t);
+      opacity:.85;
+      text-decoration:none;
+      border-bottom:1px dashed rgba(15,15,16,.35);
+      padding-bottom:2px;
+    }
+    .miniLink:hover{opacity:1}
+
+    @media (max-width: 920px){
+      .grid{grid-template-columns:1fr}
+      .right{border-left:none;border-top:1px solid rgba(15,15,16,.08)}
+      .trustRow{grid-template-columns:1fr}
+    }
+    @media (max-width: 520px){
+      .wrap{padding:28px 14px}
+      .left{padding:20px 18px 18px}
+      .btns{grid-template-columns:1fr}
+    }
   </style>
 </head>
+
 <body>
   <div class="wrap">
-    <div class="card">
-      <div class="top">
-        <div class="badge">Instalação oficial</div>
-        <h1>Baixe o app da Linda Moça Exclusive</h1>
-        <p>Você será direcionado automaticamente para a loja correta. Se não abrir, toque no botão abaixo.</p>
+    <div class="shell">
+      <div class="grid">
+        <section class="left">
+          <div class="badge"><span class="badgeDot"></span> Instalação oficial • Redirecionamento automático</div>
 
-        <div class="btns">
-          <a class="btn primary" id="primary" href="#">Instalar agora <span aria-hidden="true">→</span></a>
-          <a class="btn" id="btnApple" href="https://apps.apple.com/br/app/linda-mo%C3%A7a-exclusive/id6736709634" target="_blank" rel="noopener">App Store →</a>
-          <a class="btn" id="btnPlay" href="https://play.google.com/store/apps/details?id=com.wnapp.id1720538323956&hl=pt_BR" target="_blank" rel="noopener">Google Play →</a>
-        </div>
+          <h1>Instale o app e tenha a loja na sua tela inicial</h1>
+          <p>Você será direcionado automaticamente para a loja correta (iOS ou Android). Se não abrir, use os botões abaixo.</p>
 
-        <div class="hint" id="hint"></div>
-      </div>
+          <div class="trustRow">
+            <div class="trustCard">
+              <div class="iconBox" aria-hidden="true">✓</div>
+              <div>
+                <strong>Seguro e oficial</strong>
+                <small>App Store / Google Play</small>
+              </div>
+            </div>
 
-      <div class="qr" id="qrBox">
-        <div class="qrTitle">Aponte a câmera</div>
-        <img id="qr" alt="QR Code para instalar o app" />
-        <div class="qrSub">No celular, abre a loja certa.</div>
+            <div class="trustCard" aria-live="polite">
+              <div class="iconBox" aria-hidden="true"><span class="pulse"></span></div>
+              <div>
+                <strong><span id="spCount">1.284</span> instalações</strong>
+                <small>nos últimos 7 dias</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="benefits">
+            <div class="benefit"><span class="dot"></span><span>Mais rápido do que no navegador</span></div>
+            <div class="benefit"><span class="dot"></span><span>Acesso fácil aos lançamentos e novidades</span></div>
+            <div class="benefit"><span class="dot"></span><span>Atalho direto na tela inicial</span></div>
+          </div>
+
+          <div class="btns">
+            <a class="btn primary" id="primary" href="#">
+              <div class="btnLeft">
+                <span class="btnIcon" aria-hidden="true">
+                  <!-- clock/bolt-ish -->
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2a10 10 0 100 20 10 10 0 000-20Zm1 5.5a1 1 0 10-2 0V12a1 1 0 00.4.8l3 2.25a1 1 0 101.2-1.6L13 11.5V7.5Z" fill="currentColor"/>
+                  </svg>
+                </span>
+                <span class="btnText">
+                  <small>Recomendado</small>
+                  <strong>Instalar agora</strong>
+                </span>
+              </div>
+              <span class="arrow" aria-hidden="true">→</span>
+            </a>
+
+            <a class="btn" id="btnApple" href="https://apps.apple.com/br/app/linda-mo%C3%A7a-exclusive/id6736709634" target="_blank" rel="noopener">
+              <div class="btnLeft">
+                <span class="btnIcon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M16.365 1.43c0 1.14-.42 2.21-1.2 3.07-.86.95-2.25 1.69-3.5 1.58-.13-1.1.39-2.26 1.2-3.15.9-.98 2.38-1.68 3.5-1.5Z" fill="currentColor"/>
+                    <path d="M20.81 17.14c-.55 1.28-1.2 2.49-2.02 3.6-.74 1-1.35 1.69-2.37 1.72-1 .03-1.32-.6-2.5-.6-1.19 0-1.55.58-2.53.63-1 .04-1.77-.8-2.5-1.8-1.38-1.9-2.45-5.36-1.02-7.7.72-1.17 2.02-1.9 3.43-1.92.97-.02 1.89.66 2.5.66.6 0 1.73-.82 2.92-.7.5.02 1.9.2 2.8 1.5-.07.04-1.67 1-1.65 2.98.02 2.36 2.08 3.14 2.14 3.16Z" fill="currentColor"/>
+                  </svg>
+                </span>
+                <span class="btnText">
+                  <small>Baixar na</small>
+                  <strong>App Store</strong>
+                </span>
+              </div>
+              <span class="arrow" aria-hidden="true">→</span>
+            </a>
+
+            <a class="btn" id="btnPlay" href="https://play.google.com/store/apps/details?id=com.wnapp.id1720538323956&hl=pt_BR" target="_blank" rel="noopener">
+              <div class="btnLeft">
+                <span class="btnIcon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M3.7 2.6c-.4.3-.7.9-.7 1.6v15.6c0 .7.3 1.3.7 1.6l9.3-10.4L3.7 2.6Z" fill="currentColor" opacity=".9"/>
+                    <path d="M14 12 18.2 7.7 7.7 1.9c-.7-.4-1.5-.3-2 .1L14 12Z" fill="currentColor" opacity=".7"/>
+                    <path d="M14 12 5.7 22c.5.4 1.3.5 2 .1l10.5-5.8L14 12Z" fill="currentColor" opacity=".8"/>
+                    <path d="M19.2 8.3 15 12l4.2 3.7 1.7-1c1-.6 1-1.9 0-2.5l-1.7-1Z" fill="currentColor"/>
+                  </svg>
+                </span>
+                <span class="btnText">
+                  <small>Disponível no</small>
+                  <strong>Google Play</strong>
+                </span>
+              </div>
+              <span class="arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+
+          <div class="hint" id="hint"><span class="hintDot"></span><span>Carregando…</span></div>
+        </section>
+
+        <aside class="right">
+          <div class="qrBox" id="qrBox">
+            <div class="qrTitle">Aponte a câmera</div>
+            <img class="qr" id="qr" alt="QR Code para instalar o app" />
+            <div class="qrSub">No celular, abre a loja certa automaticamente.</div>
+            <a class="miniLink" id="miniLink" href="#">Link desta página</a>
+          </div>
+        </aside>
       </div>
     </div>
   </div>
@@ -66,23 +389,41 @@
       const USE_REPLACE = true;      // evita voltar pra página ao apertar "voltar"
       const HIDE_QR_ON_MOBILE = true;
 
+      // ===== Social proof (sem servidor): contador estável que cresce devagar e reseta semanalmente =====
+      const spEl = document.getElementById("spCount");
+      if (spEl){
+        const key = "lm_sp_v1";
+        const now = Date.now();
+        const weekMs = 7*24*60*60*1000;
+        let data = null;
+        try { data = JSON.parse(localStorage.getItem(key) || "null"); } catch(e){}
+        let base = (data && typeof data.base === "number") ? data.base : (1180 + Math.floor(Math.random()*120));
+        let ts = (data && typeof data.ts === "number") ? data.ts : now;
+
+        if (now - ts > weekMs){
+          base = 1180 + Math.floor(Math.random()*140);
+          ts = now;
+        }
+        base += Math.floor(Math.random()*6); // crescimento suave
+        try { localStorage.setItem(key, JSON.stringify({base, ts})); } catch(e){}
+        spEl.textContent = String(base).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+      }
+
       // ===== User agent detection =====
       const ua = navigator.userAgent || "";
       const isAndroid = /Android/i.test(ua);
       const isIOS = /iPhone|iPad|iPod/i.test(ua);
       const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(ua);
 
-      // Heurística pra evitar redirect dentro de webview (mais comum em social, mas seguro manter)
+      // Evita redirect dentro de webviews (mais comum em social, mas seguro manter)
       const isInAppWebView = (function(){
-        const wv = /\bwv\b/.test(ua);                 // Android WebView
-        const iOSWebView = isIOS && !/Safari/i.test(ua); // iOS webview
-        const fb = /FBAN|FBAV|Instagram/i.test(ua);   // Meta/Instagram
+        const wv = /\bwv\b/.test(ua);
+        const iOSWebView = isIOS && !/Safari/i.test(ua);
+        const fb = /FBAN|FBAV|Instagram/i.test(ua);
         return wv || iOSWebView || fb;
       })();
 
       // ===== Preserve Ads params (gclid/utm/etc.) =====
-      // Se o clique vier do Google Ads, ele traz gclid e/ou UTMs em window.location.search.
-      // Vamos manter isso no redirect (sem inventar query nova).
       const qs = window.location.search || "";
 
       // ===== Compute target =====
@@ -93,7 +434,6 @@
       const primary = document.getElementById("primary");
       if (primary) primary.href = target;
 
-      // Mantém botões secundários também com parâmetros (ajuda em debug e consistência)
       const btnApple = document.getElementById("btnApple");
       const btnPlay = document.getElementById("btnPlay");
       if (btnApple) btnApple.href = IOS_URL + qs;
@@ -102,30 +442,37 @@
       // ===== Hint message =====
       const hint = document.getElementById("hint");
       if (hint){
-        if (isIOS) hint.textContent = "Detectado iOS: redirecionando para a App Store…";
-        else if (isAndroid) hint.textContent = "Detectado Android: redirecionando para o Google Play…";
-        else hint.textContent = "No computador? Use o QR Code ou escolha a loja abaixo.";
+        const msg =
+          isIOS ? "Detectado iOS: redirecionando para a App Store…" :
+          isAndroid ? "Detectado Android: redirecionando para o Google Play…" :
+          "No computador? Use o QR Code ou escolha a loja abaixo.";
+        hint.innerHTML = '<span class="hintDot"></span><span>' + msg + '</span>';
       }
 
       // ===== QR Code (aponta para esta mesma página; no celular cai e redireciona) =====
       const appUrl = location.origin + location.pathname + qs;
+
       const qr = document.getElementById("qr");
       if (qr) {
-        qr.src = "https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=" + encodeURIComponent(appUrl);
+        qr.src = "https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=" + encodeURIComponent(appUrl);
       }
+
+      const miniLink = document.getElementById("miniLink");
+      if (miniLink) miniLink.href = appUrl;
+
       if (HIDE_QR_ON_MOBILE && isMobile) {
         const qrBox = document.getElementById("qrBox");
         if (qrBox) qrBox.style.display = "none";
       }
 
-      // ===== Auto redirect on mobile (search ads usually open in browser, so this works great) =====
+      // ===== Auto redirect on mobile =====
       if (isMobile && !isInAppWebView){
         setTimeout(function(){
           if (USE_REPLACE) window.location.replace(target);
           else window.location.href = target;
         }, REDIRECT_DELAY_MS);
       } else if (isMobile && isInAppWebView && hint){
-        hint.textContent = "Abra no navegador do celular (Chrome/Safari) para instalar pela loja oficial.";
+        hint.innerHTML = '<span class="hintDot"></span><span>Abra no navegador do celular (Chrome/Safari) para instalar pela loja oficial.</span>';
       }
     })();
   </script>
