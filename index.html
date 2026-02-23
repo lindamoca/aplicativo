@@ -8,19 +8,16 @@
 
   <style>
     :root{
-      --bg:#0f2f2d;         /* verde bem escuro (como o exemplo) */
+      --bg:#0f2f2d;
       --bg2:#0b2422;
-      --card:#ffffff;
       --text:#0f0f10;
       --muted:rgba(255,255,255,.78);
-      --muted2:rgba(15,15,16,.65);
       --stroke:rgba(255,255,255,.16);
       --stroke2:rgba(15,15,16,.10);
       --shadow:0 28px 70px rgba(0,0,0,.22);
       --shadow2:0 16px 44px rgba(15,15,16,.12);
       --green:#16a34a;
       --radius:28px;
-      --radius2:18px;
       --max:1120px;
     }
 
@@ -36,12 +33,9 @@
         linear-gradient(180deg, var(--bg), var(--bg2));
     }
 
-    a{color:inherit}
     .container{max-width:var(--max); margin:0 auto; padding:0 16px}
-    .section{padding:42px 0}
     .hero{padding:34px 0 28px}
 
-    /* HERO CARD */
     .heroCard{
       border:1px solid var(--stroke);
       border-radius:var(--radius);
@@ -54,7 +48,6 @@
     .heroGrid{
       display:grid;
       grid-template-columns: 1.05fr .95fr;
-      gap:0;
       min-height: 420px;
     }
 
@@ -82,7 +75,12 @@
       font-size:13px;
       color:rgba(255,255,255,.86);
     }
-    .badgeDot{width:8px;height:8px;border-radius:50%;background:var(--green); box-shadow:0 0 0 0 rgba(22,163,74,.28); animation:pulse 1.6s infinite}
+    .badgeDot{
+      width:8px;height:8px;border-radius:50%;
+      background:var(--green);
+      box-shadow:0 0 0 0 rgba(22,163,74,.28);
+      animation:pulse 1.6s infinite
+    }
     @keyframes pulse{
       0%{box-shadow:0 0 0 0 rgba(22,163,74,.28)}
       70%{box-shadow:0 0 0 10px rgba(22,163,74,0)}
@@ -123,7 +121,6 @@
       font-size: clamp(16px, 2.2vw, 20px);
     }
 
-    /* CTA ROW */
     .ctaRow{
       display:grid;
       grid-template-columns: 1fr;
@@ -145,6 +142,7 @@
       background: rgba(255,255,255,.10);
       transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
       box-shadow: 0 14px 40px rgba(0,0,0,.20);
+      color:#fff;
     }
     .btn:hover{transform: translateY(-2px); border-color: rgba(255,255,255,.30); background: rgba(255,255,255,.14)}
     .btn:active{transform: translateY(0)}
@@ -191,6 +189,7 @@
       background: rgba(255,255,255,.10);
       box-shadow: 0 18px 50px rgba(0,0,0,.18);
       overflow:hidden;
+      z-index:2;
     }
     .qrTop{
       padding:14px 16px;
@@ -211,8 +210,7 @@
     }
     .qrSub{font-size:12px;color:rgba(255,255,255,.82);text-align:center;max-width:28ch;line-height:1.25}
 
-    /* Phone mock (pure CSS) */
-    .phoneWrap{position:relative; width:min(420px, 100%); aspect-ratio: 10/12; display:grid; place-items:center}
+    /* Phone + Video */
     .phone{
       width: min(360px, 92%);
       aspect-ratio: 9/16;
@@ -220,76 +218,33 @@
       background: linear-gradient(180deg, #101010, #1a1a1a);
       border: 10px solid rgba(255,255,255,.10);
       box-shadow: 0 26px 70px rgba(0,0,0,.35);
-      position:relative;
+      position:absolute;
+      right:-6%;
+      top:4%;
       overflow:hidden;
       transform: rotate(10deg);
-    }
-    .phone::before{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        radial-gradient(520px 360px at 30% 10%, rgba(255,255,255,.12), transparent 55%),
-        linear-gradient(180deg, rgba(22,163,74,.14), transparent 55%);
-      opacity:.7;
+      z-index:1;
     }
     .island{
       position:absolute; top:10px; left:50%; transform: translateX(-50%);
       width: 120px; height: 30px; border-radius:999px;
       background: rgba(0,0,0,.55);
       border:1px solid rgba(255,255,255,.10);
+      z-index:3;
+      pointer-events:none;
+    }
+    .phoneVideo{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transform: translateZ(0);
+      filter: saturate(1.05) contrast(1.02);
       z-index:2;
     }
-    .screen{
-      position:absolute; inset:0;
-      padding: 56px 16px 18px;
-      z-index:1;
-      display:grid;
-      gap:12px;
-    }
-    .mockHeader{
-      height: 48px;
-      border-radius: 18px;
-      background: rgba(255,255,255,.10);
-      border:1px solid rgba(255,255,255,.14);
-      display:flex; align-items:center; justify-content:space-between;
-      padding: 0 14px;
-      color: rgba(255,255,255,.90);
-      font-weight:900;
-      letter-spacing:-.02em;
-    }
-    .mockPill{
-      height: 14px; width: 84px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.16);
-      border:1px solid rgba(255,255,255,.12);
-    }
-    .mockGrid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:10px;
-    }
-    .tile{
-      border-radius: 18px;
-      background: rgba(255,255,255,.10);
-      border:1px solid rgba(255,255,255,.14);
-      padding: 12px;
-      min-height: 86px;
-      display:flex; flex-direction:column; gap:8px;
-    }
-    .tile b{font-size:12px; letter-spacing:-.01em}
-    .tile i{font-style:normal; font-size:11px; opacity:.82; line-height:1.25}
-    .ctaBar{
-      margin-top:auto;
-      height: 54px;
-      border-radius: 18px;
-      background: rgba(22,163,74,.20);
-      border:1px solid rgba(22,163,74,.30);
-      display:flex; align-items:center; justify-content:center;
-      font-weight:950;
-      letter-spacing:-.02em;
-    }
 
-    /* Floating feature pills (como no exemplo) */
+    /* Floating feature pills */
     .pill{
       position:absolute;
       display:flex;
@@ -304,6 +259,7 @@
       color: rgba(255,255,255,.90);
       font-size: 13px;
       white-space:nowrap;
+      z-index:3;
     }
     .pillIcon{
       width:36px;height:36px;border-radius:999px;
@@ -315,7 +271,7 @@
     .pill2{top:44%; right: 0%}
     .pill3{bottom:14%; left: 12%}
 
-    /* SECTION 2 (como a segunda imagem) */
+    /* SECTION 2 */
     .whiteSection{
       background:#fff;
       color:var(--text);
@@ -359,7 +315,7 @@
       gap: 14px;
     }
     .fCard{
-      background: var(--card);
+      background: #fff;
       border:1px solid var(--stroke2);
       border-radius: 20px;
       box-shadow: var(--shadow2);
@@ -375,7 +331,7 @@
       color: var(--green);
       font-weight:900;
     }
-    .fCard h3{margin:0; font-size:14px; letter-spacing:-.01em}
+    .fCard h3{margin:0; font-size:14px; letter-spacing:-.01em; color:var(--text)}
     .fCard p{margin:8px 0 0; font-size:13px; color: rgba(15,15,16,.62); line-height:1.35}
 
     .sidePhone{
@@ -438,11 +394,10 @@
       line-height:1.35;
     }
 
-    /* responsive */
     @media (max-width: 980px){
       .heroGrid{grid-template-columns:1fr}
       .heroRight{border-left:none; border-top:1px solid rgba(255,255,255,.12)}
-      .phone{transform: rotate(0deg)}
+      .phone{position:relative; right:auto; top:auto; transform: rotate(0deg); margin-top: 16px}
       .pill{display:none}
       .featuresGrid{grid-template-columns:1fr}
       .sidePhone{position:relative; top:auto}
@@ -456,7 +411,6 @@
 </head>
 
 <body>
-  <!-- HERO -->
   <header class="hero">
     <div class="container">
       <div class="heroCard">
@@ -531,57 +485,36 @@
           </div>
 
           <div class="heroRight">
-            <div class="phoneWrap">
-              <div class="pill pill1">
-                <span class="pillIcon" aria-hidden="true">🔎</span>
-                <span>tudo em um só lugar</span>
-              </div>
-              <div class="pill pill2">
-                <span class="pillIcon" aria-hidden="true">🔔</span>
-                <span>novidades primeiro</span>
-              </div>
-              <div class="pill pill3">
-                <span class="pillIcon" aria-hidden="true">🏷️</span>
-                <span>cupons exclusivos</span>
-              </div>
+            <div class="pill pill1"><span class="pillIcon" aria-hidden="true">🔎</span><span>tudo em um só lugar</span></div>
+            <div class="pill pill2"><span class="pillIcon" aria-hidden="true">🔔</span><span>novidades primeiro</span></div>
+            <div class="pill pill3"><span class="pillIcon" aria-hidden="true">🏷️</span><span>cupons exclusivos</span></div>
 
-              <div class="qrBox" id="qrBox">
-                <div class="qrTop">
-                  <span>Aponte a câmera</span>
-                  <a id="miniLink" href="#">link desta página</a>
-                </div>
-                <div class="qrBody">
-                  <img class="qrImg" id="qr" alt="QR Code para instalar o app" />
-                  <div class="qrSub">No celular, abre a loja certa automaticamente.</div>
-                </div>
+            <div class="qrBox" id="qrBox">
+              <div class="qrTop">
+                <span>Aponte a câmera</span>
+                <a id="miniLink" href="#">link desta página</a>
               </div>
-
-              <div class="phone" aria-hidden="true" style="position:absolute; right:-6%; top:4%;">
-                <div class="island"></div>
-                <div class="screen">
-                  <div class="mockHeader">
-                    <span>Linda Moça</span>
-                    <span class="mockPill"></span>
-                  </div>
-                  <div class="mockGrid">
-                    <div class="tile"><b>Busca rápida</b><i>Encontre as peças em segundos.</i></div>
-                    <div class="tile"><b>Favoritos</b><i>Salve e acompanhe preços.</i></div>
-                    <div class="tile"><b>Promoções</b><i>Ofertas exclusivas no app.</i></div>
-                    <div class="tile"><b>Rastreio</b><i>Acompanhe seus pedidos.</i></div>
-                  </div>
-                  <div class="ctaBar">Instalar agora</div>
-                </div>
+              <div class="qrBody">
+                <img class="qrImg" id="qr" alt="QR Code para instalar o app" />
+                <div class="qrSub">No celular, abre a loja certa automaticamente.</div>
               </div>
-
             </div>
-          </div>
 
+            <!-- ✅ VIDEO dentro do “celular” -->
+            <div class="phone" aria-hidden="true">
+              <div class="island"></div>
+              <video class="phoneVideo" autoplay muted loop playsinline preload="metadata">
+                <!-- IMPORTANTE: ajuste o caminho exatamente como o arquivo está no repo -->
+                <source src="Vídeo do WhatsApp 2026-02-23 às 16:35:32.mp4" type="video/mp4">
+              </video>
+            </div>
+
+          </div>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- SECTION 2 (scroll) -->
   <section class="whiteSection" id="mais">
     <div class="container">
       <div class="whiteHead">
@@ -594,50 +527,32 @@
       <div class="featuresGrid">
         <div class="cards">
           <article class="fCard">
-            <div class="fTop">
-              <div class="fIco">%</div>
-              <h3>Cupons e ofertas exclusivas</h3>
-            </div>
+            <div class="fTop"><div class="fIco">%</div><h3>Cupons e ofertas exclusivas</h3></div>
             <p>Ative promoções direto no app e aproveite condições especiais sempre que entrar.</p>
           </article>
 
           <article class="fCard">
-            <div class="fTop">
-              <div class="fIco">🔎</div>
-              <h3>Busca com facilidade</h3>
-            </div>
+            <div class="fTop"><div class="fIco">🔎</div><h3>Busca com facilidade</h3></div>
             <p>Encontre produtos rapidamente e navegue por coleções com muito mais fluidez.</p>
           </article>
 
           <article class="fCard">
-            <div class="fTop">
-              <div class="fIco">♡</div>
-              <h3>Lista de desejos</h3>
-            </div>
+            <div class="fTop"><div class="fIco">♡</div><h3>Lista de desejos</h3></div>
             <p>Salve seus favoritos e acompanhe novidades e mudanças de preço sem esforço.</p>
           </article>
 
           <article class="fCard">
-            <div class="fTop">
-              <div class="fIco">🔒</div>
-              <h3>Conta e pedidos</h3>
-            </div>
+            <div class="fTop"><div class="fIco">🔒</div><h3>Conta e pedidos</h3></div>
             <p>Acompanhe pedidos, rastreios e seus dados de forma prática e segura.</p>
           </article>
 
           <article class="fCard">
-            <div class="fTop">
-              <div class="fIco">🔔</div>
-              <h3>Novidades primeiro</h3>
-            </div>
+            <div class="fTop"><div class="fIco">🔔</div><h3>Novidades primeiro</h3></div>
             <p>Fique por dentro dos lançamentos e tendências antes de todo mundo.</p>
           </article>
 
           <article class="fCard">
-            <div class="fTop">
-              <div class="fIco">🛍️</div>
-              <h3>Checkout rápido</h3>
-            </div>
+            <div class="fTop"><div class="fIco">🛍️</div><h3>Checkout rápido</h3></div>
             <p>Finalize compras com menos passos e com uma experiência mais leve.</p>
           </article>
         </div>
@@ -662,22 +577,18 @@
 
   <script>
     (function(){
-      // ===== Stores =====
       const IOS_URL = "https://apps.apple.com/br/app/linda-mo%C3%A7a-exclusive/id6736709634";
       const ANDROID_URL = "https://play.google.com/store/apps/details?id=com.wnapp.id1720538323956&hl=pt_BR";
 
-      // ===== Redirect behavior =====
       const REDIRECT_DELAY_MS = 450;
       const USE_REPLACE = true;
       const HIDE_QR_ON_MOBILE = true;
 
-      // ===== Device detection =====
       const ua = navigator.userAgent || "";
       const isAndroid = /Android/i.test(ua);
       const isIOS = /iPhone|iPad|iPod/i.test(ua);
       const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(ua);
 
-      // Avoid redirects in webviews
       const isInAppWebView = (function(){
         const wv = /\bwv\b/.test(ua);
         const iOSWebView = isIOS && !/Safari/i.test(ua);
@@ -685,14 +596,10 @@
         return wv || iOSWebView || fb;
       })();
 
-      // Preserve Ads params (gclid/utm/etc.)
       const qs = window.location.search || "";
-
-      // Target by device
       const storeBase = isIOS ? IOS_URL : ANDROID_URL;
       const target = storeBase + qs;
 
-      // Buttons
       const primary = document.getElementById("primary");
       const btnApple = document.getElementById("btnApple");
       const btnPlay = document.getElementById("btnPlay");
@@ -701,7 +608,6 @@
       if (btnApple) btnApple.href = IOS_URL + qs;
       if (btnPlay) btnPlay.href = ANDROID_URL + qs;
 
-      // Hint
       const hint = document.getElementById("hint");
       if (hint){
         const msg =
@@ -711,7 +617,6 @@
         hint.innerHTML = '<span class="hintDot"></span><span>' + msg + '</span>';
       }
 
-      // QR -> this same page (with params)
       const appUrl = location.origin + location.pathname + qs;
 
       const qr = document.getElementById("qr");
@@ -725,7 +630,6 @@
         if (qb) qb.style.display = "none";
       }
 
-      // Auto redirect
       if (isMobile && !isInAppWebView){
         setTimeout(function(){
           if (USE_REPLACE) window.location.replace(target);
@@ -733,6 +637,14 @@
         }, REDIRECT_DELAY_MS);
       } else if (isMobile && isInAppWebView && hint){
         hint.innerHTML = '<span class="hintDot"></span><span>Abra no navegador do celular (Chrome/Safari) para instalar pela loja oficial.</span>';
+      }
+
+      // Tenta dar play no vídeo em alguns browsers (sem som)
+      const v = document.querySelector(".phoneVideo");
+      if (v){
+        const tryPlay = () => v.play().catch(()=>{});
+        tryPlay();
+        document.addEventListener("visibilitychange", () => { if (!document.hidden) tryPlay(); });
       }
     })();
   </script>
