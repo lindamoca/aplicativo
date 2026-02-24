@@ -186,7 +186,7 @@
       display:block;
     }
 
-    /* Phone + Video */
+    /* Phone + Video (HERO) */
     .phone{
       width: min(360px, 92%);
       aspect-ratio: 9/16;
@@ -247,7 +247,9 @@
     .pill2{top:44%; right: 0%}
     .pill3{bottom:14%; left: 12%}
 
-    /* SECTION 2 */
+    /* =========================
+       SECTION 2 (AJUSTADA)
+       ========================= */
     .whiteSection{
       background:#fff;
       color:var(--text);
@@ -257,12 +259,13 @@
       margin-top: 26px;
       box-shadow: 0 -16px 60px rgba(0,0,0,.12);
     }
+
     .whiteHead{
       display:flex;
       align-items:flex-end;
       justify-content:space-between;
       gap:16px;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
     .whiteHead h2{
       margin:0;
@@ -271,103 +274,115 @@
       color:var(--text);
     }
     .whiteHead p{
-      margin:0;
+      margin:8px 0 0;
       color: rgba(15,15,16,.65);
-      max-width: 64ch;
+      max-width: 70ch;
       line-height:1.5;
       font-size: 14px;
     }
 
-    .featuresGrid{
+    /* Layout igual ao print: cards à esquerda / celular à direita */
+    .featuresLayout{
       display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 18px;
+      grid-template-columns: 1fr 420px;
+      gap: 22px;
       align-items: start;
     }
 
+    /* 3 colunas (2 linhas) como no print */
     .cards{
       display:grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
     }
-    .fCard{
-      background: #fff;
-      border:1px solid var(--stroke2);
-      border-radius: 20px;
-      box-shadow: var(--shadow2);
-      padding: 16px 16px 14px;
-      min-height: 134px;
-    }
-    .fTop{display:flex; align-items:center; gap:10px; margin-bottom:8px}
-    .fIco{
-      width:42px;height:42px;border-radius:16px;
-      background: rgba(22,163,74,.10);
-      border: 1px solid rgba(22,163,74,.22);
-      display:grid;place-items:center;
-      color: var(--green);
-      font-weight:900;
-    }
-    .fCard h3{margin:0; font-size:14px; letter-spacing:-.01em; color:var(--text)}
-    .fCard p{margin:8px 0 0; font-size:13px; color: rgba(15,15,16,.62); line-height:1.35}
 
-    .sidePhone{
+    .fCard{
+      background: #f7f7f8;
+      border:1px solid rgba(15,15,16,.08);
+      border-radius: 22px;
+      box-shadow: 0 10px 28px rgba(15,15,16,.06);
+      padding: 18px 18px 16px;
+      min-height: 170px;
+    }
+    .fTop{display:flex; align-items:center; gap:12px; margin-bottom:10px}
+    .fIco{
+      width:44px;height:44px;border-radius:14px;
+      background: rgba(15,15,16,.04);
+      border: 1px solid rgba(15,15,16,.08);
+      display:grid;place-items:center;
+      color: rgba(15,15,16,.8);
+      font-weight:900;
+      font-size:18px;
+    }
+    .fCard h3{margin:0; font-size:15px; letter-spacing:-.01em; color:var(--text)}
+    .fCard p{margin:8px 0 0; font-size:13px; color: rgba(15,15,16,.62); line-height:1.4}
+
+    /* Celular da seção 2 com vídeo dentro (sem rotação) */
+    .phoneSideWrap{
       position:sticky;
       top: 18px;
-      background: #fff;
-      border:1px solid var(--stroke2);
-      border-radius: 26px;
-      box-shadow: var(--shadow2);
-      padding: 16px;
-      overflow:hidden;
+      display:flex;
+      justify-content:flex-end;
     }
-    .sidePhone .miniPhone{
+
+    .phoneSide{
       width: 100%;
+      max-width: 380px;
       aspect-ratio: 9/16;
-      border-radius: 34px;
-      background: linear-gradient(180deg, #111, #222);
+      border-radius: 52px;
+      background: linear-gradient(180deg, #0d0d0f, #1a1a1c);
+      border: 10px solid rgba(0,0,0,.10);
+      box-shadow: 0 26px 70px rgba(0,0,0,.22);
       position:relative;
       overflow:hidden;
-      box-shadow: 0 20px 60px rgba(15,15,16,.22);
-      border: 8px solid rgba(0,0,0,.08);
     }
-    .sidePhone .miniPhone::before{
+
+    /* moldura brilhinho */
+    .phoneSide::before{
       content:"";
-      position:absolute; inset:0;
-      background:
-        radial-gradient(520px 360px at 30% 10%, rgba(255,255,255,.10), transparent 55%),
-        linear-gradient(180deg, rgba(22,163,74,.10), transparent 60%);
+      position:absolute; inset:-2px;
+      border-radius: 54px;
+      border:1px solid rgba(255,255,255,.18);
+      pointer-events:none;
+      opacity:.7;
     }
-    .sidePhone .miniIsland{
-      position:absolute; top:10px; left:50%; transform: translateX(-50%);
-      width: 110px; height: 26px; border-radius:999px;
+
+    .sideIsland{
+      position:absolute; top:12px; left:50%; transform: translateX(-50%);
+      width: 140px; height: 34px; border-radius: 999px;
       background: rgba(0,0,0,.55);
       border:1px solid rgba(255,255,255,.10);
+      z-index:3;
+      pointer-events:none;
     }
-    .sidePhone .miniUI{
-      position:absolute; inset:0;
-      padding: 54px 12px 14px;
-      display:grid;
-      gap:10px;
-      color:#fff;
+
+    .phoneVideo2{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transform: translateZ(0);
+      filter: saturate(1.05) contrast(1.02);
+      z-index:2;
     }
-    .rowBar{
-      height: 40px;
-      border-radius: 16px;
-      background: rgba(255,255,255,.10);
-      border:1px solid rgba(255,255,255,.14);
+
+    /* uma leve “tela” por cima, igual screenshot (opcional) */
+    .screenTint{
+      position:absolute;
+      inset:0;
+      background: rgba(0,0,0,.12);
+      z-index:4;
+      pointer-events:none;
     }
-    .rowBar2{
-      height: 44px;
-      border-radius: 16px;
-      background: rgba(22,163,74,.18);
-      border:1px solid rgba(22,163,74,.30);
-      margin-top:auto;
-    }
+
     .smallNote{
       margin-top:12px;
       font-size:12px;
       color: rgba(15,15,16,.58);
       line-height:1.35;
+      max-width: 380px;
+      text-align:right;
     }
 
     @media (max-width: 980px){
@@ -375,9 +390,16 @@
       .heroRight{border-left:none; border-top:1px solid rgba(255,255,255,.12)}
       .phone{position:relative; right:auto; top:auto; transform: rotate(0deg); margin-top: 16px}
       .pill{display:none}
-      .featuresGrid{grid-template-columns:1fr}
-      .sidePhone{position:relative; top:auto}
+
+      .featuresLayout{grid-template-columns:1fr}
+      .phoneSideWrap{position:relative; top:auto; justify-content:center}
+      .smallNote{text-align:center; margin-left:auto; margin-right:auto}
     }
+
+    @media (max-width: 760px){
+      .cards{grid-template-columns: repeat(2, minmax(0, 1fr));}
+    }
+
     @media (max-width: 560px){
       .heroLeft{padding:22px 18px 18px}
       .heroRight{padding:18px}
@@ -474,7 +496,7 @@
               </div>
             </div>
 
-            <!-- ✅ VIDEO dentro do “celular” -->
+            <!-- ✅ VIDEO dentro do “celular” (HERO) -->
             <div class="phone" aria-hidden="true">
               <div class="island"></div>
               <video class="phoneVideo" autoplay muted loop playsinline preload="metadata">
@@ -488,6 +510,7 @@
     </div>
   </header>
 
+  <!-- ✅ SEÇÃO 2 AJUSTADA (cards 3x2 + celular com vídeo dentro) -->
   <section class="whiteSection" id="mais">
     <div class="container">
       <div class="whiteHead">
@@ -497,53 +520,57 @@
         </div>
       </div>
 
-      <div class="featuresGrid">
+      <div class="featuresLayout">
         <div class="cards">
           <article class="fCard">
-            <div class="fTop"><div class="fIco">%</div><h3>Cupons e ofertas exclusivas</h3></div>
-            <p>Ative promoções direto no app e aproveite condições especiais sempre que entrar.</p>
+            <div class="fTop"><div class="fIco">%</div><h3>Ative seus cupons exclusivos</h3></div>
+            <p>Receba e ative cupons direto no app para garantir descontos especiais em moda e muito mais.</p>
           </article>
 
           <article class="fCard">
-            <div class="fTop"><div class="fIco">🔎</div><h3>Busca com facilidade</h3></div>
+            <div class="fTop"><div class="fIco">🔎</div><h3>Busque com facilidade</h3></div>
             <p>Encontre produtos rapidamente e navegue por coleções com muito mais fluidez.</p>
           </article>
 
           <article class="fCard">
-            <div class="fTop"><div class="fIco">♡</div><h3>Lista de desejos</h3></div>
+            <div class="fTop"><div class="fIco">💳</div><h3>Compra simples e rápida</h3></div>
+            <p>Finalize suas compras com menos passos e uma experiência mais leve no app.</p>
+          </article>
+
+          <article class="fCard">
+            <div class="fTop"><div class="fIco">♡</div><h3>Monte sua lista de desejos</h3></div>
             <p>Salve seus favoritos e acompanhe novidades e mudanças de preço sem esforço.</p>
           </article>
 
           <article class="fCard">
-            <div class="fTop"><div class="fIco">🔒</div><h3>Conta e pedidos</h3></div>
-            <p>Acompanhe pedidos, rastreios e seus dados de forma prática e segura.</p>
+            <div class="fTop"><div class="fIco">🔒</div><h3>Gerencie sua conta com segurança</h3></div>
+            <p>Acompanhe pedidos e atualize seus dados em um só lugar, com praticidade.</p>
           </article>
 
           <article class="fCard">
-            <div class="fTop"><div class="fIco">🔔</div><h3>Novidades primeiro</h3></div>
-            <p>Fique por dentro dos lançamentos e tendências antes de todo mundo.</p>
-          </article>
-
-          <article class="fCard">
-            <div class="fTop"><div class="fIco">🛍️</div><h3>Checkout rápido</h3></div>
-            <p>Finalize compras com menos passos e com uma experiência mais leve.</p>
+            <div class="fTop"><div class="fIco">🛍️</div><h3>Tudo na palma da sua mão</h3></div>
+            <p>Receba novidades, promoções e ofertas — com acesso rápido direto na tela inicial.</p>
           </article>
         </div>
 
-        <aside class="sidePhone">
-          <div class="miniPhone" aria-hidden="true">
-            <div class="miniIsland"></div>
-            <div class="miniUI">
-              <div class="rowBar"></div>
-              <div class="rowBar"></div>
-              <div class="rowBar"></div>
-              <div class="rowBar2"></div>
+        <div>
+          <div class="phoneSideWrap">
+            <div class="phoneSide" aria-hidden="true">
+              <div class="sideIsland"></div>
+
+              <!-- ✅ VIDEO dentro do celular (SEÇÃO 2) -->
+              <video class="phoneVideo2" autoplay muted loop playsinline preload="metadata">
+                <source src="WhatsApp%20Video%202026-02-23%20at%2016.35.32.mp4" type="video/mp4">
+              </video>
+
+              <div class="screenTint"></div>
             </div>
           </div>
+
           <div class="smallNote">
             Dica: se abrir dentro do Instagram/Facebook, toque em “Abrir no navegador” para concluir a instalação pela loja oficial.
           </div>
-        </aside>
+        </div>
       </div>
     </div>
   </section>
@@ -612,12 +639,13 @@
         hint.innerHTML = '<span class="hintDot"></span><span>Abra no navegador do celular (Chrome/Safari) para instalar pela loja oficial.</span>';
       }
 
-      const v = document.querySelector(".phoneVideo");
-      if (v){
+      // tenta tocar os dois vídeos (hero + seção 2)
+      const vids = document.querySelectorAll(".phoneVideo, .phoneVideo2");
+      vids.forEach(v=>{
         const tryPlay = () => v.play().catch(()=>{});
         tryPlay();
         document.addEventListener("visibilitychange", () => { if (!document.hidden) tryPlay(); });
-      }
+      });
     })();
   </script>
 </body>
