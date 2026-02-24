@@ -231,12 +231,15 @@
     .p4{ right: 120px; bottom: 60px;}
 
     /* =========================
-       SECTION 2 (PRINT + CELULAR)
+       SECTION 2 (IGUAL AO PRINT 2)
+       - sem ícones coloridos
+       - mais espaçamento
+       - cards 3x2 e celular ao lado
        ========================= */
     .whiteSection{
       background:#fff;
       color:var(--text);
-      padding: 54px 0 56px;
+      padding: 62px 0 62px; /* mais respiro */
       border-top-left-radius: 40px;
       border-top-right-radius: 40px;
       margin-top: 14px;
@@ -246,47 +249,54 @@
     .s2Wrap{
       display:grid;
       grid-template-columns: 1fr 420px;
-      gap: 28px;
+      gap: 34px;            /* mais espaçamento entre grid e celular */
       align-items: start;
     }
 
     .cards{
       display:grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 24px;
+      gap: 26px;            /* mais espaçamento entre cards */
       align-items: stretch;
     }
 
     .fCard{
       background: #f3f3f4;
       border:none;
-      border-radius: 22px;
+      border-radius: 24px;
       box-shadow: none;
-      padding: 22px 22px 20px;
-      min-height: 156px;
+      padding: 28px 28px 26px; /* mais espaçamento interno */
+      min-height: 178px;
     }
-    .fTop{margin-bottom:10px}
+
+    /* ícone preto/cinza (sem cor) e alinhamento igual print 2 */
+    .fTop{margin-bottom: 14px}
     .fIco{
-      background: transparent;
-      border:none;
       color: rgba(15,15,16,.78);
-      font-weight:900;
-      font-size:40px;
-      line-height:1;
-      display:inline-block;
+      font-weight: 900;
+      font-size: 42px;
+      line-height: 1;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      filter: grayscale(1) saturate(0); /* garante “sem cor” se usar emoji */
     }
+
     .fCard h3{
-      margin:12px 0 0;
-      font-size:16px;
-      letter-spacing:-.01em;
-      color:var(--text);
-      font-weight:900;
+      margin: 0;
+      font-size: 16px;
+      letter-spacing: -.01em;
+      color: var(--text);
+      font-weight: 900;
+      line-height: 1.2;
     }
+
     .fCard p{
-      margin:10px 0 0;
-      font-size:13px;
+      margin: 12px 0 0;
+      font-size: 13px;
       color: rgba(15,15,16,.62);
-      line-height:1.45;
+      line-height: 1.55;     /* mais leitura */
+      max-width: 46ch;
     }
 
     .s2PhoneCol{
@@ -341,7 +351,7 @@
     .screenShade{
       position:absolute;
       inset:0;
-      background: rgba(0,0,0,.18);
+      background: rgba(0,0,0,.12);
       z-index:5;
       pointer-events:none;
     }
@@ -361,7 +371,8 @@
     }
 
     @media (max-width: 860px){
-      .cards{grid-template-columns: repeat(2, minmax(0, 1fr)); gap:16px;}
+      .cards{grid-template-columns: repeat(2, minmax(0, 1fr)); gap:18px;}
+      .fCard{padding: 24px}
     }
 
     @media (max-width: 620px){
@@ -432,7 +443,7 @@
     </div>
   </header>
 
-  <!-- ✅ SEGUNDA SESSÃO (PRINT + CELULAR AO LADO COM VÍDEO) -->
+  <!-- ✅ SEGUNDA SESSÃO (AGORA IGUAL AO PRINT 2) -->
   <section class="whiteSection" id="mais">
     <div class="container">
       <div class="s2Wrap">
@@ -494,11 +505,8 @@
       const IOS_URL = "https://apps.apple.com/br/app/linda-mo%C3%A7a-exclusive/id6736709634";
       const ANDROID_URL = "https://play.google.com/store/apps/details?id=com.wnapp.id1720538323956&hl=pt_BR";
 
-      // Redirect apenas no mobile (fora de webview)
       const REDIRECT_DELAY_MS = 450;
       const USE_REPLACE = true;
-
-      // QR (só faz sentido em desktop)
       const HIDE_QR_ON_MOBILE = true;
 
       const ua = navigator.userAgent || "";
@@ -524,17 +532,14 @@
 
       const appUrl = location.origin + location.pathname + qs;
 
-      // gera QR do link desta página
       const qr = document.getElementById("qr");
       if (qr) qr.src = "https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=" + encodeURIComponent(appUrl);
 
-      // esconde QR no mobile
       if (HIDE_QR_ON_MOBILE && isMobile){
         const qb = document.querySelector(".qrRow");
         if (qb) qb.style.display = "none";
       }
 
-      // redirect
       if (isMobile && !isInAppWebView){
         setTimeout(function(){
           if (USE_REPLACE) window.location.replace(target);
@@ -542,7 +547,6 @@
         }, REDIRECT_DELAY_MS);
       }
 
-      // força play do vídeo (webviews)
       const vids = document.querySelectorAll(".phoneVideoS2");
       vids.forEach(v=>{
         const tryPlay = () => v.play().catch(()=>{});
