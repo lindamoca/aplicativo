@@ -426,60 +426,79 @@
     </div>
   </section>
 
-  <script>
-    (function(){
-      const IOS_URL = "https://apps.apple.com/br/app/linda-mo%C3%A7a-exclusive/id6736709634";
-      const ANDROID_URL = "https://play.google.com/store/apps/details?id=com.wnapp.id1720538323956&hl=pt_BR";
+ <script>
+  (function () {
+    const IOS_URL = "https://apps.apple.com/br/app/linda-mo%C3%A7a-exclusive/id6736709634";
+    const ANDROID_URL = "https://play.google.com/store/apps/details?id=com.wnapp.id1720538323956&hl=pt_BR";
 
-      const REDIRECT_DELAY_MS = 450;
-      const USE_REPLACE = true;
-      const HIDE_QR_ON_MOBILE = true;
+    const REDIRECT_DELAY_MS = 450;
+    const USE_REPLACE = true;
+    const HIDE_QR_ON_MOBILE = true;
 
-      const ua = navigator.userAgent || "";
-      const isIOS = /iPhone|iPad|iPod/i.test(ua);
-      const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(ua);
+    const ua = navigator.userAgent || navigator.vendor || window.opera || "";
+    const isIOS = /iPad|iPhone|iPod/i.test(ua);
+    const isAndroid = /Android/i.test(ua);
 
-      const isInAppWebView = (function(){
-        const wv = /\bwv\b/.test(ua);
-        const iOSWebView = isIOS && !/Safari/i.test(ua);
-        const fb = /FBAN|FBAV|Instagram/i.test(ua);
-        return wv || iOSWebView || fb;
-      })();
+    // "mobile" mais confiável
+    const isMobile =
+      isAndroid ||
+      isIOS ||
+      /Mobi/i.test(ua) ||
+      (navigator.maxTouchPoints && navigator.maxTouchPoints > 1);
 
-      const qs = window.location.search || "";
-      const storeBase = isIOS ? IOS_URL : ANDROID_URL;
-      const target = storeBase + qs;
+    // detecta apps que normalmente bloqueiam auto-redirect (Instagram/Facebook etc.)
+    const isInApp =
+      /FBAN|FBAV|Instagram|Line|Twitter|TikTok|Snapchat/i.test(ua);
 
-      const btnApple = document.getElementById("btnApple");
-      const btnPlay = document.getElementById("btnPlay");
-      if (btnApple) btnApple.href = IOS_URL + qs;
-      if (btnPlay) btnPlay.href = ANDROID_URL + qs;
+    const qs = window.location.search || "";
+    const target = (isIOS ? IOS_URL : ANDROID_URL) + qs;
 
-      const appUrl = location.origin + location.pathname + qs;
+    // botões
+    const btnApple = document.getElementById("btnApple");
+    const btnPlay = document.getElementById("btnPlay");
+    if (btnApple) btnApple.href = IOS_URL + qs;
+    if (btnPlay) btnPlay.href = ANDROID_URL + qs;
 
-      const qr = document.getElementById("qr");
-      if (qr) qr.src = "https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=" + encodeURIComponent(appUrl);
+    // QR
+    const appUrl = location.origin + location.pathname + qs;
+    const qr = document.getElementById("qr");
+    if (qr) {
+      qr.src =
+        "https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=" +
+        encodeURIComponent(appUrl);
+    }
 
-      if (HIDE_QR_ON_MOBILE && isMobile){
-        const qb = document.querySelector(".qrRow");
-        if (qb) qb.style.display = "none";
-      }
+    if (HIDE_QR_ON_MOBILE && isMobile) {
+      const qb = document.querySelector(".qrRow");
+      if (qb) qb.style.display = "none";
+    }
 
-      if (isMobile && !isInAppWebView){
-        setTimeout(function(){
-          if (USE_REPLACE) window.location.replace(target);
-          else window.location.href = target;
-        }, REDIRECT_DELAY_MS);
-      }
+    // ✅ Redirecionamento:
+    // - Android: redireciona SEM depender de "wv" (que dá falso positivo).
+    // - iOS: mantém como está (Safari normalmente ok).
+    // - In-app (Instagram/Facebook): tenta redirecionar assim mesmo, mas com fallback via clique do usuário.
+    function goStore() {
+      if (USE_REPLACE) window.location.replace(target);
+      else window.location.href = target;
+    }
 
-      // força play do vídeo (webviews)
-      const vids = document.querySelectorAll(".phoneVideoS2");
-      vids.forEach(v=>{
-        const tryPlay = () => v.play().catch(()=>{});
-        tryPlay();
-        document.addEventListener("visibilitychange", () => { if (!document.hidden) tryPlay(); });
+    if (isMobile) {
+      setTimeout(() => {
+        // se estiver em in-app, ainda tentamos (muitos deixam), mas se não rolar o usuário ainda tem os botões
+        goStore();
+      }, REDIRECT_DELAY_MS);
+    }
+
+    // força play do vídeo (webviews)
+    const vids = document.querySelectorAll(".phoneVideoS2");
+    vids.forEach((v) => {
+      const tryPlay = () => v.play().catch(() => {});
+      tryPlay();
+      document.addEventListener("visibilitychange", () => {
+        if (!document.hidden) tryPlay();
       });
-    })();
-  </script>
-</body>
-</html>
+    });
+  })();
+</script>
+ </body>
+ </html>
