@@ -64,29 +64,6 @@
         radial-gradient(520px 380px at 70% 70%, rgba(22,163,74,.10), transparent 60%);
     }
 
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:10px 14px;
-      border:1px solid rgba(255,255,255,.18);
-      border-radius:999px;
-      background: rgba(0,0,0,.16);
-      font-size:13px;
-      color:rgba(255,255,255,.86);
-    }
-    .badgeDot{
-      width:8px;height:8px;border-radius:50%;
-      background:var(--green);
-      box-shadow:0 0 0 0 rgba(22,163,74,.28);
-      animation:pulse 1.6s infinite
-    }
-    @keyframes pulse{
-      0%{box-shadow:0 0 0 0 rgba(22,163,74,.28)}
-      70%{box-shadow:0 0 0 10px rgba(22,163,74,0)}
-      100%{box-shadow:0 0 0 0 rgba(22,163,74,0)}
-    }
-
     h1{
       margin:14px 0 10px;
       font-size: clamp(30px, 4.4vw, 54px);
@@ -208,7 +185,6 @@
       border:1px solid rgba(255,255,255,.14);
       display:block;
     }
-    .qrSub{font-size:12px;color:rgba(255,255,255,.82);text-align:center;max-width:28ch;line-height:1.25}
 
     /* Phone + Video */
     .phone{
@@ -416,7 +392,6 @@
       <div class="heroCard">
         <div class="heroGrid">
           <div class="heroLeft">
-            <div class="badge"><span class="badgeDot"></span> Instalação oficial • redirecionamento automático</div>
 
             <h1>Clique e instale o app</h1>
 
@@ -496,7 +471,6 @@
               </div>
               <div class="qrBody">
                 <img class="qrImg" id="qr" alt="QR Code para instalar o app" />
-                <div class="qrSub">No celular, abre a loja certa automaticamente.</div>
               </div>
             </div>
 
@@ -504,8 +478,7 @@
             <div class="phone" aria-hidden="true">
               <div class="island"></div>
               <video class="phoneVideo" autoplay muted loop playsinline preload="metadata">
-                <!-- IMPORTANTE: ajuste o caminho exatamente como o arquivo está no repo -->
-                <source src="Vídeo do WhatsApp 2026-02-23 às 16:35:32.mp4" type="video/mp4">
+                <source src="WhatsApp%20Video%202026-02-23%20at%2016.35.32.mp4" type="video/mp4">
               </video>
             </div>
 
@@ -639,7 +612,6 @@
         hint.innerHTML = '<span class="hintDot"></span><span>Abra no navegador do celular (Chrome/Safari) para instalar pela loja oficial.</span>';
       }
 
-      // Tenta dar play no vídeo em alguns browsers (sem som)
       const v = document.querySelector(".phoneVideo");
       if (v){
         const tryPlay = () => v.play().catch(()=>{});
